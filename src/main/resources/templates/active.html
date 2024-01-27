@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Employee in work</title>
+    <style>
+        table, td {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+<h1>Employee in work</h1>
+<table>
+    <thead>
+    <tr>
+        <td>No</td>
+        <td>Name</td>
+        <td>Surname</td>
+        <td>Section</td>
+        <td>Shift</td>
+        <td>Date</td>
+        <td>Time</td>
+    </tr>
+    </thead>
+    <tbody>
+<tr th:each="event, status: ${event}" th:object="${event}">
+    <td th:text="${status.count}">1</td>
+    <td th:text="*{employee.firstName}">Name</td>
+    <td th:text="*{employee.lastName}">Surname</td>
+    <td th:text="*{employee.section.description}">Section</td>
+    <td th:text="*{employee.section.shift}">Shift</td>
+    <td th:text="*{dateWithoutTime}">Start working date</td>
+    <td th:text="*{timeWithoutDate}">Start working time</td>
+
+
+
+
+
+    </tbody>
+</table>
+
+</tr>
+
+</body>
+</html>

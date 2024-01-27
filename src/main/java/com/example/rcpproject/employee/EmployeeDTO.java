@@ -51,4 +51,14 @@ public class EmployeeDTO {
 
     public EmployeeDTO() {
     }
+
+    @Override
+    public String toString() {
+        return "EmployeeDTO{" +
+                "firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", loginCode='" + loginCode + '\'' +
+                ", section=" + section +
+                '}';
+    }
 }

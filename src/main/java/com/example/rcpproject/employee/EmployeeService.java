@@ -1,7 +1,6 @@
 package com.example.rcpproject.employee;
 
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,16 +27,12 @@ public class EmployeeService {
             return employeeDTOList;
     }
 
-    public EmployeeDTO employeeByLogin (String loginCode) {
-//    Optional<Employee> employee = employeeRepo.findEmployeeByLoginCode(loginCode);
-//
-//    if(employee.isPresent()){
-//        return mapperDTO(employee.get());
-//    }
-//    else return null;
 
-        Optional<Employee> employee = employeeRepo.findEmployeeByLoginCode(loginCode);
-         return  employee.map(EmployeeMapper::mapperDTO).get();
+        public EmployeeDTO employeeByLogin (String loginCode) {
+
+            Optional<Employee> employeeOptional = employeeRepo.findEmployeeByLoginCode(loginCode);
+                return employeeOptional.map(EmployeeMapper::mapperDTO).orElse(null);
+
 }
 
     public void saveEmployee(EmployeeDTO employeeDTO){
@@ -48,17 +43,18 @@ public class EmployeeService {
         employeeRepo.deleteById(employeeId);
     }
 
-    @Transactional
     public void modifyEmployee(EmployeeDTO employeeDTO, Long employeeId){
 
-        Optional<Employee> employee = employeeRepo.findById(employeeId);
-        if (employee.isPresent()){
-            Employee employee1 = employee.get();
-            employee1.setSection(employeeDTO.getSection());
-            employee1.setLoginCode(employeeDTO.getLoginCode());
-            employee1.setLastName(employeeDTO.getLastName());
-            employee1.setFirstName(employeeDTO.getFirstName());
-            employeeRepo.save(employee1);
+        Optional<Employee> employeeOptional = employeeRepo.findById(employeeId);
+        if (employeeOptional.isPresent()){
+
+            employeeRepo.save(mapperDTO(employeeDTO, employeeOptional.get()));
         }
+        else System.out.println("Taki pracownik nie istnieje");
+    }
+
+    public Optional<Employee> employeeByLoginCode(String loginCode){
+
+        return employeeRepo.findEmployeeByLoginCode(loginCode);
     }
 }

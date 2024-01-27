@@ -1,4 +1,4 @@
-package com.example.rcpproject.eventinprogress;
+package com.example.rcpproject.event;
 
 import com.example.rcpproject.employee.Employee;
 import jakarta.persistence.*;

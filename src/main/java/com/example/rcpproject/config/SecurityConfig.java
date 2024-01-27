@@ -7,6 +7,8 @@ import org.springframework.context.annotation.Configuration;
 
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.web.SecurityFilterChain;
+import org.thymeleaf.templatemode.TemplateMode;
+import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver;
 
 @Configuration
 class SecurityConfig {
@@ -15,7 +17,7 @@ class SecurityConfig {
         public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
             PathRequest.H2ConsoleRequestMatcher h2ConsoleRequestMatcher = PathRequest.toH2Console();
             http.authorizeHttpRequests(requests -> requests
-                    .requestMatchers("/").permitAll()
+                    .requestMatchers("/**").permitAll()
                     .requestMatchers(h2ConsoleRequestMatcher).permitAll()
                     .anyRequest().authenticated()
             );
@@ -25,6 +27,17 @@ class SecurityConfig {
             http.headers().frameOptions().sameOrigin();
             return http.build();
         }
+
+        @Bean
+    public ClassLoaderTemplateResolver templateResolver(){
+            var templateResolver = new ClassLoaderTemplateResolver();
+            templateResolver.setSuffix(".html");
+            templateResolver.setTemplateMode(TemplateMode.HTML);
+            templateResolver.setCharacterEncoding("UTF-8");
+            templateResolver.setCheckExistence(true);
+            return templateResolver;
+        }
+
 
     }
 
