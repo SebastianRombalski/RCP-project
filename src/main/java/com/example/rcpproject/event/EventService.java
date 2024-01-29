@@ -1,19 +1,20 @@
 package com.example.rcpproject.event;
 
-import com.example.rcpproject.employee.Employee;
+import com.example.rcpproject.employee.EmployeeDTO;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import static com.example.rcpproject.event.EventMapper.mapperDTO;
 import static com.example.rcpproject.event.EventInProgressMapper.mapperDTO;
+import static com.example.rcpproject.employee.EmployeeMapper.mapperDTO;
 
 
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 @Service
-public class EventService {
+public class EventService  {
 
     private final EventRepo eventRepo;
     private final EventInProgressRepo eventInProgressRepo;
@@ -34,20 +35,22 @@ public class EventService {
         return eventDTOList;
     }
 
-    public void addEvent(Employee employee){
-        Optional<EventInProgress> eventInProgressOptional = eventInProgressRepo.findEventInProgressByEmployee_Id(employee.getId());
+    public boolean addEvent(EmployeeDTO employeeDTO){
+        Optional<EventInProgress> eventInProgressOptional = eventInProgressRepo.findEventInProgressByEmployee_Id(employeeDTO.getId());
         if(eventInProgressOptional.isPresent()){
             LocalDateTime dateStart = eventInProgressOptional.get().getDateStart();
             eventRepo.save(new Event(dateStart, LocalDateTime.now(), eventInProgressOptional.get().getEmployee()));
             eventInProgressRepo.delete(eventInProgressOptional.get());
+            return true;
         }
         else{
-            eventInProgressRepo.save(new EventInProgress(LocalDateTime.now(),employee ));
+            eventInProgressRepo.save(new EventInProgress(LocalDateTime.now(),mapperDTO(employeeDTO)));
+            return false;
         }
     }
 
     public List<EventDTO> findAllEvent (){
-        List<Event> allEvent = eventRepo.findAll();
+        List<Event> allEvent = eventRepo.findAll(Sort.by(Sort.Direction.ASC, "employee_lastName"));
         List<EventDTO> allEventDTO = new ArrayList<>();
         for (Event e : allEvent) {
             allEventDTO.add(mapperDTO(e));
@@ -55,12 +58,13 @@ public class EventService {
         return allEventDTO;
     }
     public List<EventInProgressDTO> findAllEventInProgress(){
-        List<EventInProgress> allEventInProgress = eventInProgressRepo.findAll();
+        List<EventInProgress> allEventInProgress = eventInProgressRepo.findAll(Sort.by(Sort.Direction.ASC, "employee_lastName"));
         List<EventInProgressDTO> allEventInProgressDTO = new ArrayList<>();
         for (EventInProgress e: allEventInProgress ) {
             allEventInProgressDTO.add(mapperDTO(e));
         }
         return allEventInProgressDTO;
     }
+
 
 }

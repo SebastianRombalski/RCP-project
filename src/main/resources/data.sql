@@ -18,7 +18,9 @@ VALUES
 INSERT INTO
     events_in_progress (date_start, employee_id)
 VALUES
+    ('2021-12-01 14:30:15', 2),
     ('2021-12-01 14:30:15', 1);
+
 INSERT INTO
     events (date_start, date_stop, employee_id)
 VALUES

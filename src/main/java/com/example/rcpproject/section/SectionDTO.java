@@ -7,12 +7,23 @@ public class SectionDTO {
     private String description;
     private int shift;
 
+    private Long id;
+
     public SectionDTO() {
     }
 
-    public SectionDTO(String description, int shift) {
+    public SectionDTO(Long id, String description, int shift) {
         this.description = description;
         this.shift = shift;
+        this.id = id;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getDescription() {

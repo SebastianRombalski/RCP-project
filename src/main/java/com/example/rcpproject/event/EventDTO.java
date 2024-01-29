@@ -6,7 +6,9 @@ package com.example.rcpproject.event;
 import com.example.rcpproject.employee.Employee;
 
 import java.time.Duration;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 
 public class EventDTO {
@@ -15,6 +17,11 @@ public class EventDTO {
     private LocalDateTime dateStop;
     private TimeForEvenet timeInWork;
     private Employee employee;
+
+    private LocalDate dateStartWithoutTime;
+    private LocalTime timeStartWithoutDate;
+    private LocalDate dateStopWithoutTime;
+    private LocalTime timeStopWithoutDate;
 
 
 
@@ -26,7 +33,19 @@ public class EventDTO {
         this.dateStop = dateStop;
         this.timeInWork = getTime(dateStart, dateStop);
         this.employee = employee;
+        this.dateStartWithoutTime = time(dateStart);
+        this.timeStartWithoutDate = date(dateStart);
+        this.dateStopWithoutTime = time(dateStop);
+        this.timeStopWithoutDate = date(dateStop);
 
+    }
+
+    private LocalTime date(LocalDateTime date) {
+        return date.toLocalTime();
+    }
+
+    private LocalDate time(LocalDateTime date) {
+        return date.toLocalDate();
     }
 
     public Employee getEmployee() {
@@ -70,6 +89,38 @@ public class EventDTO {
 
     public void setTimeInWork(TimeForEvenet timeInWork) {
         this.timeInWork = timeInWork;
+    }
+
+    public LocalDate getDateStartWithoutTime() {
+        return dateStartWithoutTime;
+    }
+
+    public void setDateStartWithoutTime(LocalDate dateStartWithoutTime) {
+        this.dateStartWithoutTime = dateStartWithoutTime;
+    }
+
+    public LocalTime getTimeStartWithoutDate() {
+        return timeStartWithoutDate;
+    }
+
+    public void setTimeStartWithoutDate(LocalTime timeStartWithoutDate) {
+        this.timeStartWithoutDate = timeStartWithoutDate;
+    }
+
+    public LocalDate getDateStopWithoutTime() {
+        return dateStopWithoutTime;
+    }
+
+    public void setDateStopWithoutTime(LocalDate dateStopWithoutTime) {
+        this.dateStopWithoutTime = dateStopWithoutTime;
+    }
+
+    public LocalTime getTimeStopWithoutDate() {
+        return timeStopWithoutDate;
+    }
+
+    public void setTimeStopWithoutDate(LocalTime timeStopWithoutDate) {
+        this.timeStopWithoutDate = timeStopWithoutDate;
     }
 
     @Override

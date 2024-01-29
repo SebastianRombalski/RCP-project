@@ -7,7 +7,7 @@ public class SectionMapper {
         return section;
     }
     public static SectionDTO mapperDTO (Section section){
-        SectionDTO sectionDTO = new SectionDTO(section.getDescription(), section.getShift());
+        SectionDTO sectionDTO = new SectionDTO(section.getId(), section.getDescription(), section.getShift());
         return sectionDTO;
     }
 }

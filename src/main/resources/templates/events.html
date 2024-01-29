@@ -2,18 +2,28 @@
 <html lang="en"  xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Employee in work</title>
+    <style>
+        table, td {
+            border: 1px solid black;
+        }
+    </style>
 </head>
-<h1>coś się wyświetli</h1>
 <body>
-<h1>Employee in work</h1>
+<h1>events</h1>
 <table>
     <thead>
     <tr>
-        <td>Id</td>
-        <td>Nazwa</td>
-        <td>Producent</td>
-        <td>Cena</td>
+        <td>No</td>
+        <td>Name</td>
+        <td>Surname</td>
+        <td>Section</td>
+        <td>Shift</td>
+        <td>Date start</td>
+        <td>Time start</td>
+        <td>Date stop</td>
+        <td>Time stop</td>
+        <td>Time in work</td>
     </tr>
     </thead>
     <tbody>
@@ -23,10 +33,11 @@
     <td th:text="*{employee.lastName}">Surname</td>
     <td th:text="*{employee.section.description}">Section</td>
     <td th:text="*{employee.section.shift}">Section</td>
-    <td th:text="*{dateStart}">Start working</td>
-    <td th:text="*{dateStop}">Stop working</td>
-    <td th:text="*{timeInWork.hours}">Time in work</td>
-    <td th:text="*{timeInWork.minutes}">Time in work</td>
+    <td th:text="*{dateStartWithoutTime}">Start working date</td>
+    <td th:text="*{timeStartWithoutDate}">Start working time</td>
+    <td th:text="*{dateStopWithoutTime}">Stop working date</td>
+    <td th:text="*{timeStopWithoutDate}">Stop working time</td>
+    <td th:text="*{timeInWork.hours +':'+ timeInWork.minutes}">Time in work</td>
     </tbody>
 </table>
 

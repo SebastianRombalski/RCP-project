@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>login-logout</title>
+</head>
+<body>
+<h1>login</h1>
+<form method="post" action="/save">
+    <label>
+login code:
+        <input name="logincode" placeholder="">
+    </label>
+</form>
+
+<p><p th:if="${info}" th:text="${info}" >
+</body>
+</html>

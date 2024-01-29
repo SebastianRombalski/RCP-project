@@ -53,8 +53,8 @@ public class EmployeeService {
         else System.out.println("Taki pracownik nie istnieje");
     }
 
-    public Optional<Employee> employeeByLoginCode(String loginCode){
+    public Optional<EmployeeDTO> employeeByLoginCode(String loginCode){
 
-        return employeeRepo.findEmployeeByLoginCode(loginCode);
+        return employeeRepo.findEmployeeByLoginCode(loginCode).map(EmployeeMapper::mapperDTO);
     }
 }

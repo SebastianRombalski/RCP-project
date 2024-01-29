@@ -1,24 +1,19 @@
-package com.example.rcpproject.web;
+package com.example.rcpproject.controller;
 
 
 
-import com.example.rcpproject.event.EventInProgressDTO;
 import com.example.rcpproject.event.EventService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 
-import java.util.Collections;
-
-
-
 @Controller
-public class activeController {
+public class ActiveController {
 
     private final EventService eventService;
 
-    public activeController(EventService eventService) {
+    public ActiveController(EventService eventService) {
         this.eventService = eventService;
     }
 

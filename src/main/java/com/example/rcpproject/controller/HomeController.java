@@ -1,4 +1,4 @@
-package com.example.rcpproject.web;
+package com.example.rcpproject.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

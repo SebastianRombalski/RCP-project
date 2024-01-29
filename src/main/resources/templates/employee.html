@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Employee</title>
+</head>
+<body>
+<h1>Employee : </h1>
+
+<form method="post" action="/search">
+    <label>
+        Id notatki:
+        <input name="decsription" placeholder="np. abc123">
+    </label>
+    <label>
+        Treść:
+        <input name="shift" placeholder="Zacznij pisać..." >
+    </label>
+    <button type="submit">Zapisz</button>
+</form>
+<table>
+    <thead>
+    <tr>
+        <td>No</td>
+        <td>Name</td>
+        <td>Surname</td>
+        <td>Section</td>
+        <td>Shift</td>
+        <td>Date</td>
+        <td>Time</td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="employee, status: ${employee}" th:object="${employee}">
+        <td th:text="${status.count}">1</td>
+        <td th:text="*{firstName}">Name</td>
+        <td th:text="*{lastName}">Surname</td>
+        <td th:text="*{loginCode}">LoginCode</td>
+        <td th:text="*{section.description}">Section</td>
+        <td th:text="*{section.shift}">Shift</td>
+    </tbody>
+    </tr>
+</table>
+</body>
+</html>

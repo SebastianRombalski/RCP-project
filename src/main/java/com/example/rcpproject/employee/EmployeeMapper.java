@@ -2,7 +2,7 @@ package com.example.rcpproject.employee;
 
 
 
-class EmployeeMapper {
+public class EmployeeMapper {
 
     public static Employee mapperDTO (EmployeeDTO employeeDTO){
         Employee employee = new Employee();
@@ -10,6 +10,7 @@ class EmployeeMapper {
         employee.setLastName(employeeDTO.getLastName());
         employee.setLoginCode(employeeDTO.getLoginCode());
         employee.setSection(employeeDTO.getSection());
+        employee.setId(employeeDTO.getId());
 
         return employee;
 
@@ -20,6 +21,7 @@ class EmployeeMapper {
         employee.setLastName(employeeDTO.getLastName());
         employee.setLoginCode(employeeDTO.getLoginCode());
         employee.setSection(employeeDTO.getSection());
+
 
         return employee;
 
@@ -32,6 +34,7 @@ class EmployeeMapper {
         employeeDTO.setLastName(employee.getLastName());
         employeeDTO.setSection(employee.getSection());
         employeeDTO.setLoginCode(employee.getLoginCode());
+        employeeDTO.setId(employee.getId());
 
         return employeeDTO;
     }

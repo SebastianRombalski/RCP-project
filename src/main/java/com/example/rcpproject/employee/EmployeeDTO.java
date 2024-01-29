@@ -5,6 +5,7 @@ import com.example.rcpproject.section.Section;
 
 public class EmployeeDTO {
 
+    private Long id;
     private String firstName;
     private String lastName;
     private String loginCode;
@@ -42,7 +43,16 @@ public class EmployeeDTO {
         this.section = section;
     }
 
-    public EmployeeDTO(String firstName, String lastName, String loginCode, Section section) {
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public EmployeeDTO(Long id, String firstName, String lastName, String loginCode, Section section) {
+        this.id=id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.loginCode = loginCode;

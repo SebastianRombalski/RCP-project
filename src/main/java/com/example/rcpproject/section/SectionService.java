@@ -1,6 +1,7 @@
 package com.example.rcpproject.section;
 
 import org.springframework.stereotype.Service;
+import static com.example.rcpproject.section.SectionMapper.mapperDTO;
 
 import java.util.List;
 
@@ -16,5 +17,8 @@ public class SectionService {
     public List<Section> findSections (){
 
         return sectionRepo.findAll();
+    }
+    public SectionDTO findSection(String description, int shift){
+        return sectionRepo.findSectionByDescriptionAndShift(description,shift).map(SectionMapper::mapperDTO).orElse(null);
     }
 }
