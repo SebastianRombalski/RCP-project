@@ -11,6 +11,8 @@ public class EmployeeDTO {
     private String loginCode;
     private Section section;
 
+    private String status;
+
     public String getFirstName() {
         return firstName;
     }
@@ -51,11 +53,27 @@ public class EmployeeDTO {
         this.id = id;
     }
 
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
     public EmployeeDTO(Long id, String firstName, String lastName, String loginCode, Section section) {
         this.id=id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.loginCode = loginCode;
+        this.section = section;
+    }
+
+    public EmployeeDTO(String firstName, String lastName, String loginCode, String status, Section section) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.loginCode = loginCode;
+        this.status = status;
         this.section = section;
     }
 

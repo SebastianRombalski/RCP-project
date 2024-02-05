@@ -11,6 +11,7 @@ public class EmployeeMapper {
         employee.setLoginCode(employeeDTO.getLoginCode());
         employee.setSection(employeeDTO.getSection());
         employee.setId(employeeDTO.getId());
+        employee.setStatus(employeeDTO.getStatus());
 
         return employee;
 
@@ -21,7 +22,7 @@ public class EmployeeMapper {
         employee.setLastName(employeeDTO.getLastName());
         employee.setLoginCode(employeeDTO.getLoginCode());
         employee.setSection(employeeDTO.getSection());
-
+        employee.setStatus(employeeDTO.getStatus());
 
         return employee;
 
@@ -35,6 +36,7 @@ public class EmployeeMapper {
         employeeDTO.setSection(employee.getSection());
         employeeDTO.setLoginCode(employee.getLoginCode());
         employeeDTO.setId(employee.getId());
+        employeeDTO.setStatus(employee.getStatus());
 
         return employeeDTO;
     }

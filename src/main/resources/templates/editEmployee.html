@@ -1,0 +1,32 @@
+<!DOCTYPE html >
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Add new employee</title>
+</head>
+<body>
+
+<h1>Add new employee :</h1>
+
+<form method="post" action="/saveEditEmployee">
+    <label>
+        First name:
+        <input name="firstName" th:field="${employee.firstName}">
+    </label>
+    <label>
+        Last name:
+        <input name="lastName" th:field="${employee.lastName}">
+    </label>
+    <label>
+        login code:
+        <input name="loginCode" th:field="${employee.loginCode}">
+    </label>
+    <select name="idSection">
+        <option th:each="listSection : ${listSection}" th:value="${listSection.id}" th:text="'Section: ' + ${listSection.description} + ' shift: ' + ${listSection.shift}"></option>
+    </select>
+
+    <button type="submit" th:name="id" th:value="${employee.id}">save</button>
+</form>
+
+</body>
+</html>

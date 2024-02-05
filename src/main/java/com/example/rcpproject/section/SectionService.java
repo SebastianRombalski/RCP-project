@@ -14,11 +14,15 @@ public class SectionService {
         this.sectionRepo = sectionRepo;
     }
 
-    public List<Section> findSections (){
+    public List<SectionDTO> findSections (){
 
-        return sectionRepo.findAll();
+        return sectionRepo.findAll().stream().map(SectionMapper::mapperDTO).toList();
     }
     public SectionDTO findSection(String description, int shift){
         return sectionRepo.findSectionByDescriptionAndShift(description,shift).map(SectionMapper::mapperDTO).orElse(null);
+    }
+
+    public Section findSectionById(Long id) {
+        return sectionRepo.findById(id).get();
     }
 }

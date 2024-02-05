@@ -8,26 +8,27 @@
 <h1>Employee : </h1>
 
 <form method="post" action="/search">
-    <label>
-        Id notatki:
-        <input name="decsription" placeholder="np. abc123">
-    </label>
-    <label>
-        Treść:
-        <input name="shift" placeholder="Zacznij pisać..." >
-    </label>
-    <button type="submit">Zapisz</button>
+<select name="id">
+    <option value="0">select section</option>
+    <option th:each="sectionList : ${sectionList}" th:value="${sectionList.id}" th:text="${sectionList.description}"></option>
+</select>
+
+<button type="submit">search</button>
 </form>
+
+</div>
 <table>
     <thead>
     <tr>
         <td>No</td>
         <td>Name</td>
         <td>Surname</td>
+        <td>LoginCode</td>
         <td>Section</td>
         <td>Shift</td>
-        <td>Date</td>
-        <td>Time</td>
+        <td>status</td>
+        <td>edit</td>
+        <td>change status</td>
     </tr>
     </thead>
     <tbody>
@@ -38,8 +39,18 @@
         <td th:text="*{loginCode}">LoginCode</td>
         <td th:text="*{section.description}">Section</td>
         <td th:text="*{section.shift}">Shift</td>
+        <td th:text="*{status}">Status</td>
+        <form method="post" action="/edit">
+            <td><button type="submit" th:name="id" th:value="${employee.id}">edit</button></td>
+        </form>
+        <form method="post" action="/change">
+        <td><button type="submit" th:name="id" th:value="${employee.id}">change</button></td>
+        </form>
     </tbody>
     </tr>
 </table>
+<form method="get" action="/add">
+<button type="submit">add new employee</button>
+        </form>
 </body>
 </html>

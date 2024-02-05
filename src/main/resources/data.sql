@@ -7,11 +7,11 @@ VALUES
     ('Test_and_packing',1);
 
 INSERT INTO
-    employees (first_name, last_name, login_code, section_id)
+    employees (first_name, last_name, login_code,status, section_id)
 VALUES
-    ('Jan', 'Kowalski', '231241231', 1),
-    ('Patrycja', 'Nowak', '231223141231',1),
-    ('Stefan', 'Jakis', '23124sada21341231',3);
+    ('Jan', 'Kowalski', '231241231','active', 1),
+    ('Patrycja', 'Nowak', '231223141231','active',1),
+    ('Stefan', 'Jakis', '23124sada21341231','active',3);
 
 
 

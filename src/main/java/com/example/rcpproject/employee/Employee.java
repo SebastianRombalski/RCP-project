@@ -23,6 +23,9 @@ public class Employee {
     @Size(min = 5, max = 100)
     private String loginCode;
 
+    @NonNull
+    private String status;
+
     @OneToOne
     @NonNull
     private Section section;
@@ -32,6 +35,7 @@ public class Employee {
         this.lastName = lastName;
         this.loginCode = loginCode;
         this.section = section;
+        this.status = "active";
     }
 
     public Employee() {
@@ -69,6 +73,16 @@ public class Employee {
     public void setLoginCode(@NonNull String loginCode) {
         this.loginCode = loginCode;
     }
+
+    @NonNull
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(@NonNull String status) {
+        this.status = status;
+    }
+
     @NonNull
     public Section getSection() {
         return section;
@@ -80,13 +94,4 @@ public class Employee {
 
 
 
-    @Override
-    public String toString() {
-        return "Employee{" +
-                "id=" + id +
-                ", name='" + firstName + '\'' +
-                ", surname='" + lastName + '\'' +
-                ", loginCode='" + loginCode + '\'' +
-                '}';
-    }
 }

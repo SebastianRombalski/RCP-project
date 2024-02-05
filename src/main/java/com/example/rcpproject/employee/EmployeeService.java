@@ -1,5 +1,7 @@
 package com.example.rcpproject.employee;
 
+import jakarta.transaction.Transactional;
+import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -57,4 +59,20 @@ public class EmployeeService {
 
         return employeeRepo.findEmployeeByLoginCode(loginCode).map(EmployeeMapper::mapperDTO);
     }
+
+    public EmployeeDTO employeeById(Long id){
+        return employeeRepo.findById(id).map(EmployeeMapper::mapperDTO).orElse(null);
+    }
+
+
+    public void changeStatus(Long id){
+        Employee employee = employeeRepo.findById(id).orElse(null);
+        if(employee.getStatus().equals("active")) {
+            employee.setStatus("inactive");
+        }
+        else employee.setStatus("active");
+
+        employeeRepo.save(employee);
+    }
+
 }

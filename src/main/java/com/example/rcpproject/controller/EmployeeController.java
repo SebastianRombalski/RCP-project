@@ -2,6 +2,7 @@ package com.example.rcpproject.controller;
 
 import com.example.rcpproject.employee.EmployeeDTO;
 import com.example.rcpproject.employee.EmployeeService;
+import com.example.rcpproject.section.SectionDTO;
 import com.example.rcpproject.section.SectionService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,6 +10,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.util.UriComponentsBuilder;
+
+import java.util.List;
 
 @Controller
 public class EmployeeController {
@@ -21,9 +24,10 @@ public class EmployeeController {
     }
 
     @GetMapping("/employee")
-    String employee(String description, Integer shift, Model model){
-        if (description!=null) {
-            Long id = sectionService.findSection(description, shift).getId();
+    String employee(Long id, Model model){
+        List<SectionDTO> sectionList = sectionService.findSections();
+        model.addAttribute("sectionList", sectionList);
+        if (id!=null) {
             model.addAttribute("employee", employeeService.employeesBySection(id));
             return "employee";
         }
@@ -31,12 +35,56 @@ public class EmployeeController {
     }
 
     @PostMapping("/search")
-    String searchEmployee(@RequestParam String decsription, @RequestParam Integer shift){
+    String searchEmployee(@RequestParam Long id){
         return UriComponentsBuilder
                 .fromPath("redirect:employee")
-                .queryParam("description", decsription)
-                .queryParam("shift", shift)
+                .queryParam("id", id)
                 .build().toString();
 
+    }
+
+    @PostMapping("/edit")
+    String editEmployee(@RequestParam Long id, Model model){
+        model.addAttribute("employee",employeeService.employeeById(id));
+        model.addAttribute("listSection", sectionService.findSections());
+
+        return "editEmployee";
+    }
+
+    @PostMapping("/change")
+    String changeStatus(@RequestParam Long id){
+        employeeService.changeStatus(id);
+
+        return "redirect:employee";
+    }
+
+    @GetMapping("/add")
+    String add( Model model){
+        model.addAttribute("listSection", sectionService.findSections());
+        return "addEmployee";
+    }
+
+    @PostMapping("/addEmployee")
+    String addEmployee(@RequestParam String firstName,
+                       @RequestParam String lastName,
+                       @RequestParam String loginCode,
+                       @RequestParam Long id){
+        employeeService.saveEmployee(new EmployeeDTO(firstName, lastName, loginCode,"active", sectionService.findSectionById(id)));
+        return "redirect:employee";
+    }
+
+    @PostMapping("/saveEditEmployee")
+    String saveEditEmployee(@RequestParam Long id,
+                            @RequestParam String firstName,
+                            @RequestParam String lastName,
+                            @RequestParam String loginCode,
+                            @RequestParam Long idSection){
+EmployeeDTO employeeDTO = employeeService.employeeById(id);
+employeeDTO.setSection(sectionService.findSectionById(idSection));
+employeeDTO.setFirstName(firstName);
+employeeDTO.setLastName(lastName);
+employeeDTO.setLoginCode(loginCode);
+employeeService.saveEmployee(employeeDTO);
+        return "redirect:employee";
     }
 }
