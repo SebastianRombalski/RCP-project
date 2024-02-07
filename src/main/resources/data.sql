@@ -10,8 +10,8 @@ INSERT INTO
     employees (first_name, last_name, login_code,status, section_id)
 VALUES
     ('Jan', 'Kowalski', '231241231','active', 1),
-    ('Patrycja', 'Nowak', '231223141231','active',1),
-    ('Stefan', 'Jakis', '23124sada21341231','active',3);
+    ('Patrycja', 'Nowak', '231223141231','inactive',1),
+    ('Stefan', 'Jakis', '231241532231','inactive',3);
 
 
 

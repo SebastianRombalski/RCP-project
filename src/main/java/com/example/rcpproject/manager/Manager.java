@@ -5,7 +5,9 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.Size;
 import org.springframework.lang.NonNull;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -33,12 +35,12 @@ public class Manager {
             name="manager_sections",
             joinColumns = @JoinColumn(name = "manager_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "section_id", referencedColumnName = "id"))
-    private Set<Section> sections = new HashSet<>();
+    private List<Section> sections = new ArrayList<>();
 
     public Manager() {
     }
 
-    public Manager(@NonNull String firstName, @NonNull String lastName, @NonNull String login, @NonNull String password, Set<Section> sections) {
+    public Manager(@NonNull String firstName, @NonNull String lastName, @NonNull String login, @NonNull String password, List<Section> sections) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.login = login;
@@ -82,11 +84,11 @@ public class Manager {
         this.password = password;
     }
 
-    public Set<Section> getSections() {
+    public List<Section> getSections() {
         return sections;
     }
 
-    public void setSections(Set<Section> sections) {
+    public void setSections(List<Section> sections) {
         this.sections = sections;
     }
 

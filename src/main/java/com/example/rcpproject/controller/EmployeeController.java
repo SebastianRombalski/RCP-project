@@ -68,9 +68,12 @@ public class EmployeeController {
     String addEmployee(@RequestParam String firstName,
                        @RequestParam String lastName,
                        @RequestParam String loginCode,
-                       @RequestParam Long id){
-        employeeService.saveEmployee(new EmployeeDTO(firstName, lastName, loginCode,"active", sectionService.findSectionById(id)));
-        return "redirect:employee";
+                       @RequestParam Long sectionId){
+        employeeService.saveEmployee(new EmployeeDTO(firstName, lastName, loginCode,"active", sectionService.findSectionById(sectionId)));
+        return UriComponentsBuilder
+                .fromPath("redirect:employee")
+                .queryParam("id", sectionId)
+                .build().toString();
     }
 
     @PostMapping("/saveEditEmployee")
@@ -78,13 +81,16 @@ public class EmployeeController {
                             @RequestParam String firstName,
                             @RequestParam String lastName,
                             @RequestParam String loginCode,
-                            @RequestParam Long idSection){
+                            @RequestParam Long sectionId){
 EmployeeDTO employeeDTO = employeeService.employeeById(id);
-employeeDTO.setSection(sectionService.findSectionById(idSection));
+employeeDTO.setSection(sectionService.findSectionById(sectionId));
 employeeDTO.setFirstName(firstName);
 employeeDTO.setLastName(lastName);
 employeeDTO.setLoginCode(loginCode);
 employeeService.saveEmployee(employeeDTO);
-        return "redirect:employee";
+        return UriComponentsBuilder
+                .fromPath("redirect:employee")
+                .queryParam("id", sectionId)
+                .build().toString();
     }
 }

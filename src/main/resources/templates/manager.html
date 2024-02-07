@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Employee</title>
+</head>
+<body>
+<h1>Employee : </h1>
+
+<table>
+    <thead>
+    <tr>
+        <td>No</td>
+        <td>First Name</td>
+        <td>Last Name</td>
+        <td>Login</td>
+
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="manager, status: ${manager}" th:object="${manager}">
+        <td th:text="${status.count}">1</td>
+        <td th:text="*{firstName}">First name</td>
+        <td th:text="*{lastName}">Last name</td>
+        <td th:text="*{login}">login</td>
+        <td th:each="manager.sections : ${manager.sections}" th:text="${sections}"></td>
+
+
+<!--        <form method="post" action="/edit">-->
+<!--            <td><button type="submit" th:name="id" th:value="${employee.id}">edit</button></td>-->
+<!--        </form>-->
+<!--        <form method="post" action="/change">-->
+<!--            <td><button type="submit" th:name="id" th:value="${employee.id}">change</button></td>-->
+<!--        </form>-->
+    </tbody>
+    </tr>
+</table>
+<!--<form method="get" action="/add">-->
+<!--    <button type="submit">add new employee</button>-->
+<!--</form>-->
+</body>
+</html>

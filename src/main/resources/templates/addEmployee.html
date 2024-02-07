@@ -21,7 +21,7 @@
         login code:
         <input name="loginCode" placeholder="">
     </label>
-    <select name="id">
+    <select name="sectionId">
         <option value="0">select section</option>
         <option th:each="listSection : ${listSection}" th:value="${listSection.id}" th:text="'Section: ' + ${listSection.description} + ' shift: ' + ${listSection.shift}"></option>
     </select>

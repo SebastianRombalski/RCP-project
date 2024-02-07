@@ -8,7 +8,9 @@ import jakarta.persistence.ManyToMany;
 import jakarta.validation.constraints.Size;
 import org.springframework.lang.NonNull;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public class ManagerDTO {
@@ -16,7 +18,7 @@ public class ManagerDTO {
     private String lastName;
     private String login;
     private String password;
-    private Set<Section> sections = new HashSet<>();
+    private List<Section> sections = new ArrayList<>();
 
     @Override
     public String toString() {
@@ -29,7 +31,7 @@ public class ManagerDTO {
                 '}';
     }
 
-    public ManagerDTO(String firstName, String lastName, String password, Set<Section> sections) {
+    public ManagerDTO(String firstName, String lastName, String password, List<Section> sections) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.login = firstName + "." + lastName;
@@ -37,7 +39,7 @@ public class ManagerDTO {
         this.sections = sections;
     }
 
-    public ManagerDTO(String firstName, String lastName, String login, String password, Set<Section> sections) {
+    public ManagerDTO(String firstName, String lastName, String login, String password, List<Section> sections) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.login = login;
@@ -80,11 +82,11 @@ public class ManagerDTO {
         this.password = password;
     }
 
-    public Set<Section> getSections() {
+    public List<Section> getSections() {
         return sections;
     }
 
-    public void setSections(Set<Section> sections) {
+    public void setSections(List<Section> sections) {
         this.sections = sections;
     }
 }
