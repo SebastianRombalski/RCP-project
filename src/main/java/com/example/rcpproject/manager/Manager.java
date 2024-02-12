@@ -48,6 +48,14 @@ public class Manager {
         this.sections = sections;
     }
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     @NonNull
     public String getFirstName() {
         return firstName;

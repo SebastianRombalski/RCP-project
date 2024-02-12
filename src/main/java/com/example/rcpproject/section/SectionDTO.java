@@ -44,9 +44,8 @@ public class SectionDTO {
 
     @Override
     public String toString() {
-        return "SectionDTO{" +
-                "description='" + description + '\'' +
-                ", shift=" + shift +
-                '}';
+        return   "description='" + description + '\'' +
+                ", shift=" + shift
+                ;
     }
 }

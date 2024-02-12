@@ -4,7 +4,8 @@ INSERT INTO
 VALUES
     ('Enginering', 1),
     ('Enginering', 2),
-    ('Test_and_packing',1);
+    ('Test_and_packing',1),
+    ('Test_and_packing',2);
 
 INSERT INTO
     employees (first_name, last_name, login_code,status, section_id)

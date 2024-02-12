@@ -51,10 +51,7 @@ public class Section {
 
     @Override
     public String toString() {
-        return "Section{" +
-                "id=" + id +
-                ", description='" + description + '\'' +
-                ", shaft=" + shift +
-                '}';
+        return  "description='" + description + '\'' +
+                ", shaft=" + shift;
     }
 }

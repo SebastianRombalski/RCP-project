@@ -1,5 +1,6 @@
 package com.example.rcpproject.manager;
 
+import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -35,5 +36,14 @@ public class ManagerService {
             managerDTOList.add(mapperDTO(m));
         }
         return managerDTOList;
+    }
+
+    public void deleteManager (Long id){
+        managerRepo.deleteById(id);
+    }
+
+    public ManagerDTO findManagerById(Long id){
+
+return managerRepo.findById(id).map(ManagerMapper::mapperDTO).orElse(null);
     }
 }

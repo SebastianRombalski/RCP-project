@@ -10,4 +10,5 @@ import java.util.Optional;
 interface SectionRepo extends JpaRepository<Section,Long> {
 
     Optional<Section> findSectionByDescriptionAndShift(String description, int shift);
+
 }
