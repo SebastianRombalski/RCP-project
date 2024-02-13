@@ -1,5 +1,5 @@
 <!DOCTYPE html >
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
     <title>Add new employee</title>
@@ -16,6 +16,10 @@
     <label>
         Last name:
         <input name="lastName" th:field="${manager.lastName}">
+    </label>
+    <label>
+        password :
+        <input password="password" th:field="${manager.password}">
     </label>
     <label>
         login :

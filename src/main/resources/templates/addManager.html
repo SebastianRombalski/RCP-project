@@ -1,0 +1,38 @@
+<!DOCTYPE html >
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Add new employee</title>
+</head>
+<body>
+
+<h1>Add new employee :</h1>
+
+<form method="post" action="/saveManager">
+    <label>
+        First name:
+        <input name="firstName" placeholder="">
+    </label>
+    <label>
+        Last name:
+        <input name="lastName" placeholder="">
+    </label>
+    <label>
+        login :
+        <input name="login" placeholder="">
+    </label>
+    <label>
+        password :
+        <input name="password" placeholder="">
+    </label>
+
+    <label th:each="section : ${section}" th:value="${section.id}">
+        <input type="checkbox" th:checked="false" th:name="${section.id}" th:text="${section.description +' shift '+ section.shift}">
+    </label>
+
+
+    <button type="submit" >add</button>
+</form>
+
+</body>
+</html>

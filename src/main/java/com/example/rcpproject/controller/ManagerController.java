@@ -1,5 +1,6 @@
 package com.example.rcpproject.controller;
 
+import com.example.rcpproject.manager.Manager;
 import com.example.rcpproject.manager.ManagerDTO;
 import com.example.rcpproject.manager.ManagerService;
 import com.example.rcpproject.section.SectionDTO;
@@ -80,11 +81,39 @@ public class ManagerController {
         ManagerDTO managerDTO = managerService.findManagerById(Long.valueOf(request.getParameter("id")));
         System.out.println(managerDTO);
         managerDTO.setFirstName(request.getParameter("firstName"));
-        managerDTO.setFirstName(request.getParameter("lastName"));
-        managerDTO.setFirstName(request.getParameter("login"));
+        managerDTO.setLastName(request.getParameter("lastName"));
+        managerDTO.setLogin(request.getParameter("login"));
         managerDTO.setSections(updatedSectionList.stream().map(SectionMapper::mapperDTO).toList());
-        System.out.println(managerDTO);
         managerService.saveManager(managerDTO);
+            return "redirect:manager";
+        }
+
+
+        @GetMapping("/addManager")
+    String addManager(Model model){
+        model.addAttribute("section", sectionService.findSections());
+        return "addManager";
+        }
+
+        @PostMapping("/saveManager")
+    String saveManager(HttpServletRequest request){
+        List<SectionDTO> sectionList = sectionService.findSections();
+        List<SectionDTO> sectionManagerList= new ArrayList<>();
+            for(int i=0 ; i<sectionList.size(); i++)
+            {
+                String s = sectionList.get(i).getId().toString();
+                if(!(request.getParameter(s)==null)){
+                    sectionManagerList.add(sectionList.get(i));
+                }
+
+            }
+            ManagerDTO managerDTO = new ManagerDTO();
+            managerDTO.setFirstName(request.getParameter("firstName"));
+            managerDTO.setLastName(request.getParameter("lastName"));
+            managerDTO.setLogin(request.getParameter("login"));
+            managerDTO.setPassword(request.getParameter("password"));
+            managerDTO.setSections(sectionManagerList.stream().map(SectionMapper::mapperDTO).toList());
+            managerService.saveManager(managerDTO);
             return "redirect:manager";
         }
     }

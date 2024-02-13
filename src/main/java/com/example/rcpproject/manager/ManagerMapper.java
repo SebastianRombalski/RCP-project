@@ -10,7 +10,9 @@ public class ManagerMapper {
 
     public static Manager mapperDTO(ManagerDTO managerDTO){
         Manager manager = new Manager(managerDTO.getFirstName(), managerDTO.getLastName(), managerDTO.getLogin(), managerDTO.getPassword(), managerDTO.getSections());
-        manager.setId(managerDTO.getId());
+        if(managerDTO.getId()!=null) {
+            manager.setId(managerDTO.getId());
+        }
         return manager;
     }
 
