@@ -18,6 +18,11 @@ public class SectionDTO {
         this.id = id;
     }
 
+    public SectionDTO(String description, int shift) {
+        this.description = description;
+        this.shift = shift;
+    }
+
     public Long getId() {
         return id;
     }

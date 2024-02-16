@@ -1,0 +1,25 @@
+<!DOCTYPE html >
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Add new section :</title>
+</head>
+<body>
+
+<h1>Add new section :</h1>
+
+<form method="post" action="/saveSection">
+    <label>
+        Description :
+        <input name="description">
+    </label>
+    <label>
+        Shift :
+        <input name="shift">
+    </label>
+
+    <button type="submit" >save</button>
+</form>
+
+</body>
+</html>

@@ -25,4 +25,12 @@ public class SectionService {
     public Section findSectionById(Long id) {
         return sectionRepo.findById(id).get();
     }
+
+    public SectionDTO findSectionDTOById(Long id){
+        return sectionRepo.findById(id).map(SectionMapper::mapperDTO).orElse(null);
+    }
+
+    public void saveSection(SectionDTO sectionDTO){
+        sectionRepo.save(mapperDTO(sectionDTO));
+    }
 }

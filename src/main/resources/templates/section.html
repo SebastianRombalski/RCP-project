@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Section</title>
+</head>
+<body>
+<h1>Section : </h1>
+
+<table>
+    <thead>
+    <tr>
+        <td>No</td>
+        <td>First Name</td>
+        <td>Last Name</td>
+        <td>Login</td>
+
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="sections, status: ${sections}" th:object="${sections}">
+        <td th:text="${status.count}">1</td>
+        <td th:text="*{description}"></td>
+        <td th:text="*{shift}"></td>
+
+
+
+        <form method="post" action="/editSection">
+            <td><button type="submit" th:name="id" th:value="${sections.id}">edit</button></td>
+        </form>
+        <form method="post" action="/deleteSection">
+            <td><button type="submit" th:name="id" th:value="${sections.id}">delete</button></td>
+        </form>
+    </tbody>
+    </tr>
+</table>
+<form method="get" action="/addSection">
+    <button type="submit">add new section</button>
+</form>
+</body>
+</html>

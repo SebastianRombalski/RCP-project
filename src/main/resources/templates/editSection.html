@@ -1,0 +1,25 @@
+<!DOCTYPE html >
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit section</title>
+</head>
+<body>
+
+<h1>Edit section :</h1>
+
+<form method="post" action="/saveEditSection">
+    <label>
+        Description :
+        <input name="description" th:field="${section.description}">
+    </label>
+    <label>
+        Shift :
+        <input name="shift" th:field="${section.shift}">
+    </label>
+
+    <button type="submit" th:name="id" th:value="${section.id}">save</button>
+</form>
+
+</body>
+</html>
