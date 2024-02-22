@@ -8,9 +8,22 @@
             border: 1px solid black;
         }
     </style>
+
 </head>
 <body>
 <h1>events</h1>
+
+<form method="post" action="/filterEvents">
+    Filter :
+    from date: <input type="date" th:name="fromDate" th:value="${fromDate}">
+    to date: <input type="date" th:name="toDate" th:value="${toDate}">
+    Employee: <select name="employeeID">
+
+    <option value="0">select employee</option>
+    <option th:each="employees : ${employees}" th:value="${employees.id}" th:text="${employees.firstName} + ' ' + ${employees.lastName}"></option>
+</select>
+    <button type="submit">add</button>
+</form>
 <table>
     <thead>
     <tr>

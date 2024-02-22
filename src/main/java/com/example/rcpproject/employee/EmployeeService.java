@@ -75,4 +75,9 @@ public class EmployeeService {
         employeeRepo.save(employee);
     }
 
+    public List<EmployeeDTO> findEmployees(){
+       return employeeRepo.findAll().stream().map(EmployeeMapper::mapperDTO).toList();
+    }
+
+
 }

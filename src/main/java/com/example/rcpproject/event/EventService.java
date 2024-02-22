@@ -1,8 +1,11 @@
 package com.example.rcpproject.event;
 
 import com.example.rcpproject.employee.EmployeeDTO;
+import org.apache.logging.log4j.util.Strings;
+import org.springframework.cglib.core.Local;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+
 import static com.example.rcpproject.event.EventMapper.mapperDTO;
 import static com.example.rcpproject.event.EventInProgressMapper.mapperDTO;
 import static com.example.rcpproject.employee.EmployeeMapper.mapperDTO;
@@ -64,6 +67,42 @@ public class EventService  {
             allEventInProgressDTO.add(mapperDTO(e));
         }
         return allEventInProgressDTO;
+    }
+
+
+
+    public List<EventDTO> findEventByEmployeeBetweenDate(Long id, String fromDate, String toDate){
+        if (fromDate.isEmpty() && toDate.isEmpty() && id == 0) {
+                return eventRepo.findAll().stream().map(EventMapper::mapperDTO).toList();
+            } else {
+                if (id != 0 && fromDate.isEmpty() && toDate.isEmpty()) {
+                    return eventRepo.findEventsByEmployee_id(id).stream().map(EventMapper::mapperDTO).toList();
+                } else if (id != 0 && !fromDate.isEmpty() && toDate.isEmpty()) {
+                    return eventRepo.findEventsByEmployee_IdAndDateStartAfter(id, parseDateTimeStartDay(fromDate)).stream().map(EventMapper::mapperDTO).toList();
+                } else if (id != 0 && fromDate.isEmpty() && !toDate.isEmpty()) {
+                    return eventRepo.findEventsByEmployee_IdAndDateStartBefore(id,parseDateTimeEndDay(toDate)).stream().map(EventMapper::mapperDTO).toList();
+                } else if (id != 0 && !fromDate.isEmpty() && !toDate.isEmpty()) {
+                    return eventRepo.findEventsByEmployee_IdAndDateStartBetween(id, parseDateTimeStartDay(fromDate), parseDateTimeEndDay(toDate)).stream().map(EventMapper::mapperDTO).toList();
+                } else if (id == 0 && !fromDate.isEmpty() && toDate.isEmpty()) {
+                    return eventRepo.findEventsByDateStartAfter(parseDateTimeStartDay(fromDate)).stream().map(EventMapper::mapperDTO).toList();
+                } else if (id == 0 && fromDate.isEmpty() && !toDate.isEmpty()) {
+                    return eventRepo.findEventsByDateStartBefore(parseDateTimeEndDay(toDate)).stream().map(EventMapper::mapperDTO).toList();
+                } else if (id == 0 && !fromDate.isEmpty() && !toDate.isEmpty()) {
+                    return eventRepo.findEventsByDateStartBetween(parseDateTimeStartDay(fromDate), parseDateTimeEndDay(toDate)).stream().map(EventMapper::mapperDTO).toList();
+                }
+                else return null;
+            }
+    }
+
+
+    private LocalDateTime parseDateTimeStartDay(String data){
+        String dateWithTime = new StringBuilder(data + "T00:00:00").toString();
+        return LocalDateTime.parse(dateWithTime);
+    }
+    private LocalDateTime parseDateTimeEndDay(String data){
+        System.out.println(LocalDateTime.now());
+        String dateWithTime = new StringBuilder(data + "T23:59:59").toString();
+        return LocalDateTime.parse(dateWithTime);
     }
 
 
