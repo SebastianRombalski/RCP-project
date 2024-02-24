@@ -1,11 +1,26 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:class="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>login-logout</title>
+    <title>Company Name</title>
+    <style>
+        h1 {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        form {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        .information{
+            font-size: 30px;
+            color: green;
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
-<h1>login</h1>
+<h1>Company Name</h1>
 <form method="post" action="/save">
     <label>
 login code:
@@ -13,6 +28,6 @@ login code:
     </label>
 </form>
 
-<p><p th:if="${info}" th:text="${info}" >
+<p class="information" th:if="${info}" th:text="${info}" ></p>
 </body>
 </html>

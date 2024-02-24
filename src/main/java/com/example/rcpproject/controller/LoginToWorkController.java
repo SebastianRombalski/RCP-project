@@ -21,7 +21,7 @@ public class LoginToWorkController {
     }
 
 
-    @GetMapping("/login")
+    @GetMapping("/")
     String loginPage(String status, String fn, String ln, boolean logout, Model model) {
         if (status == null) {
             if (ln == null) {
@@ -60,18 +60,18 @@ public class LoginToWorkController {
                 String firstName = employeeDTO.getFirstName();
                 String lastName = employeeDTO.getLastName();
                 return UriComponentsBuilder
-                        .fromPath("redirect:login")
+                        .fromPath("redirect:/")
                         .queryParam("fn", firstName)
                         .queryParam("ln", lastName)
                         .queryParam("logout", logout)
                         .build().toString();
             } else return UriComponentsBuilder
-                    .fromPath("redirect:login")
+                    .fromPath("redirect:/")
                     .queryParam("status", "false")
                     .build().toString();
 
         } else return UriComponentsBuilder
-                .fromPath("redirect:login")
+                .fromPath("redirect:/")
                 .queryParam("status", "wrongLoginCode")
                 .build().toString();
 
