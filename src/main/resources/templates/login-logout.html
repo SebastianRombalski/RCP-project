@@ -14,8 +14,11 @@
         }
         .information{
             font-size: 30px;
-            color: darkgreen;
             text-align: center;
+        }
+        .login{
+            position: absolute; right: 5%; top: 5px;
+            font-size: 30px;
         }
     </style>
 </head>
@@ -29,5 +32,6 @@ login code:
 </form>
 
 <p class="information" th:if="${info}" th:text="${info}" ></p>
+<a class="login" href="/login" >Log in</a>
 </body>
 </html>

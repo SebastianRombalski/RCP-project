@@ -3,47 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <title>Zaloguj się</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
-          integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
-          crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
-        .container {
-            margin: 0 auto;
-            max-width: 400px;
+        h1{
+            text-align: center;
         }
-
-        .login-form {
+        form{
+            align-items: center;
             display: flex;
             flex-direction: column;
             margin-top: 32px;
-            align-items: center;
         }
-
-        .lock-icon {
-            display: block;
+        input,button{
+                margin: 4px 0;
         }
-
-        .login-header,
-        .lock-icon,
-        .form-item {
+        p{
             text-align: center;
-        }
-
-        .form-item {
-            margin: 4px 0;
-            width: 100%;
         }
     </style>
 </head>
 <body>
 <div class="container">
-    <h1 class="login-header">Zaloguj się</h1>
-    <i class="fa-solid fa-lock fa-10x lock-icon"></i>
-    <form class="login-form" action="/login" method="post">
-        <input name="username" placeholder="nazwa użytkownika" class="form-item">
-        <input name="password" placeholder="hasło" type="password" class="form-item">
-        <button type="submit" class="form-item">Zaloguj się</button>
+    <h1>Log in</h1>
+    <form action="/login" method="post">
+        <input name="username" placeholder="Username">
+        <input name="password" placeholder="password" type="password">
+        <button type="submit" class="form-item">Log in</button>
     </form>
+    <p>username : user, password : pass</p>
 </div>
 </body>
 </html>

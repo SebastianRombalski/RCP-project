@@ -32,7 +32,10 @@ public class EmployeeController {
             model.addAttribute("employee", employeeService.employeesBySection(id));
             return "employee";
         }
-        else return "employee";
+        else {
+            model.addAttribute("employee", employeeService.findEmployees());
+            return "employee";
+        }
     }
 
     @PostMapping("/search")

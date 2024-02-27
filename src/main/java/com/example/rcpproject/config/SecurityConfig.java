@@ -17,11 +17,14 @@ class SecurityConfig {
         public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
             PathRequest.H2ConsoleRequestMatcher h2ConsoleRequestMatcher = PathRequest.toH2Console();
             http.authorizeHttpRequests(requests -> requests
-                    .requestMatchers("/**").permitAll()
+                    .requestMatchers("/").permitAll()
+                    .requestMatchers("/login").permitAll()
                     .requestMatchers(h2ConsoleRequestMatcher).permitAll()
                     .anyRequest().authenticated()
             );
-            http.formLogin(login -> login.loginPage("/login").permitAll());
+            http.formLogin(login -> login.defaultSuccessUrl("/menu"));
+                http.formLogin(login -> login.loginPage("/login").permitAll());
+                http.formLogin(login -> login.defaultSuccessUrl("/menu"));
 //            http.csrf(csrf -> csrf.ignoringRequestMatchers(h2ConsoleRequestMatcher));
             http.csrf().disable();
             http.headers().frameOptions().sameOrigin();
@@ -42,3 +45,20 @@ class SecurityConfig {
     }
 
 
+
+// WORKING BEAN !!
+//@Bean
+//public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+//    PathRequest.H2ConsoleRequestMatcher h2ConsoleRequestMatcher = PathRequest.toH2Console();
+//    http.authorizeHttpRequests(requests -> requests
+//            .requestMatchers("/").permitAll()
+//            .requestMatchers(h2ConsoleRequestMatcher).permitAll()
+//            .anyRequest().authenticated()
+//    );
+//    http.formLogin(login -> login.loginPage("/login").permitAll());
+//    http.formLogin(login -> login.defaultSuccessUrl("/menu"));
+////            http.csrf(csrf -> csrf.ignoringRequestMatchers(h2ConsoleRequestMatcher));
+//    http.csrf().disable();
+//    http.headers().frameOptions().sameOrigin();
+//    return http.build();
+//}
