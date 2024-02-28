@@ -3,8 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <title>Section</title>
+    <style>
+        a{
+            position: absolute; left: 1%; top: 5px;
+            font-size: 20px;
+        }
+        .all{
+            text-align: center;
+        }
+        table, td{
+            margin: 0 auto;
+            border: 1px solid black;
+        }
+    </style>
 </head>
 <body>
+<div class="all">
 <h1>Section : </h1>
 
 <table>
@@ -13,7 +27,8 @@
         <td>No</td>
         <td>First Name</td>
         <td>Last Name</td>
-        <td>Login</td>
+        <td>Edit</td>
+        <td>Delete</td>
 
     </tr>
     </thead>
@@ -37,5 +52,7 @@
 <form method="get" action="/addSection">
     <button type="submit">add new section</button>
 </form>
+</div>
+<a href="/menu">Back</a>
 </body>
 </html>
