@@ -3,6 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <title>Edit section</title>
+    <style>
+        a{
+            position: absolute; left: 1%; top: 5px;
+            font-size: 20px;
+        }
+    </style>
 </head>
 <body>
 
@@ -20,6 +26,6 @@
 
     <button type="submit" th:name="id" th:value="${section.id}">save</button>
 </form>
-
+<a href="section">Back</a>
 </body>
 </html>

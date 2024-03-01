@@ -3,6 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <title>Employee</title>
+    <style>
+        a{
+            position: absolute; left: 1%; top: 5px;
+            font-size: 20px;
+        }
+        table, td {
+            border: 1px solid black;
+            margin:0 auto;
+        }
+        h1, form{
+            text-align: center;
+        }
+        .button{
+            margin-top: 5px;
+        }
+    </style>
 </head>
 <body>
 <h1>Employee : </h1>
@@ -34,8 +50,9 @@
     </tbody>
     </tr>
 </table>
-<form method="get" action="/addManager">
+<form class="button" method="get" action="/addManager">
     <button type="submit">add new manager</button>
 </form>
+<a href="/menu">Back</a>
 </body>
 </html>
