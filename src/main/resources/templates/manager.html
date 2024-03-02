@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Employee</title>
+    <title>Manager</title>
     <style>
         a{
             position: absolute; left: 1%; top: 5px;
@@ -21,7 +21,7 @@
     </style>
 </head>
 <body>
-<h1>Employee : </h1>
+<h1>Manager : </h1>
 
 <table>
     <thead>
@@ -30,6 +30,8 @@
         <td>First Name</td>
         <td>Last Name</td>
         <td>Login</td>
+        <td>Edit</td>
+        <td>Delete</td>
 
     </tr>
     </thead>
@@ -45,7 +47,7 @@
             <td><button type="submit" th:name="id" th:value="${manager.id}">edit</button></td>
         </form>
         <form method="post" action="/deleteManager">
-            <td><button type="submit" th:name="id" th:value="${manager.id}">change</button></td>
+            <td><button type="submit" th:name="id" th:value="${manager.id}">delete account</button></td>
         </form>
     </tbody>
     </tr>

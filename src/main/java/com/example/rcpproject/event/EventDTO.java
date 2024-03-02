@@ -23,6 +23,8 @@ public class EventDTO {
     private LocalDate dateStopWithoutTime;
     private LocalTime timeStopWithoutDate;
 
+    private Long id;
+
 
 
     public EventDTO() {
@@ -38,6 +40,14 @@ public class EventDTO {
         this.dateStopWithoutTime = time(dateStop);
         this.timeStopWithoutDate = date(dateStop);
 
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     private LocalTime date(LocalDateTime date) {

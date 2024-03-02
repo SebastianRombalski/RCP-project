@@ -94,6 +94,21 @@ public class EventService  {
             }
     }
 
+    public EventDTO findEventById(Long id){
+       return eventRepo.findById(id).map(EventMapper::mapperDTO).orElse(null);
+    }
+
+    public void saveChangedEvent(LocalDateTime startTime, LocalDateTime stopTime, Long id){
+        Event event = eventRepo.findById(id).get();
+        event.setDateStart(startTime);
+        event.setDateStop(stopTime);
+        eventRepo.save(event);
+    }
+
+    public void deleteEvent(Long id){
+        eventRepo.delete(eventRepo.findById(id).get());
+    }
+
 
     private LocalDateTime parseDateTimeStartDay(String data){
         String dateWithTime = new StringBuilder(data + "T00:00:00").toString();

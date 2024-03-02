@@ -60,6 +60,10 @@
     <td th:text="*{dateStopWithoutTime}">Stop working date</td>
     <td th:text="*{timeStopWithoutDate}">Stop working time</td>
     <td th:text="*{timeInWork.hours +':'+ timeInWork.minutes}">Time in work</td>
+
+    <td><form method="post", action="/editEvent"><button type="submit" th:name="id" th:value="${event.id}">edit</button></form></td>
+    <td><form method="post", action="/deleteEvent"><button type="submit" th:name="id" th:value="${event.id}">delete</button></form></td>
+
     </tbody>
 </table>
 
