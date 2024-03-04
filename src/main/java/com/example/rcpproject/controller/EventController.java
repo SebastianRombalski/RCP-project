@@ -72,6 +72,26 @@ public class EventController {
         return "redirect:events";
 }
 
+@GetMapping("/addEvent")
+    String addEvent (Model model){
+        model.addAttribute("employee", employeeService.findEmployees());
+        return "addEvent";
+}
+
+@PostMapping("saveNewEvent")
+        String saveNewEvent(String startTime, String stopTime, Long employeeId){
+        if(startTime.isEmpty() || stopTime.isEmpty() || employeeId==0){
+            return UriComponentsBuilder
+                    .fromPath("redirect:addEvent")
+                    .queryParam("value", true)
+                    .build().toString();
+        }
+        else{
+            eventService.saveEvent(startTime, stopTime, employeeService.employeeById(employeeId));
+            return "redirect:events";
+        }
+}
+
 
 
 

@@ -1,6 +1,8 @@
 package com.example.rcpproject.event;
 
+import com.example.rcpproject.employee.Employee;
 import com.example.rcpproject.employee.EmployeeDTO;
+import com.example.rcpproject.employee.EmployeeMapper;
 import org.apache.logging.log4j.util.Strings;
 import org.springframework.cglib.core.Local;
 import org.springframework.data.domain.Sort;
@@ -121,4 +123,7 @@ public class EventService  {
     }
 
 
+    public void saveEvent(String startTime, String stopTime, EmployeeDTO employee ) {
+        eventRepo.save(new Event(LocalDateTime.parse(startTime), LocalDateTime.parse(stopTime), EmployeeMapper.mapperDTO(employee)));
+    }
 }
