@@ -2,6 +2,7 @@ package com.example.rcpproject.controller;
 
 import com.example.rcpproject.employee.EmployeeService;
 import com.example.rcpproject.event.EventService;
+import org.springframework.boot.Banner;
 import org.springframework.cglib.core.Local;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -59,11 +60,25 @@ public class EventController {
         return "editEvent";
 }
 
-@PostMapping("/saveEditEvent")
-    String saveEditEvent (@RequestParam String startTime, @RequestParam String stopTime, @RequestParam Long id){
+@GetMapping("/editEvent")
+String editEventGet(@RequestParam Long id, Model model){
+    model.addAttribute("event", eventService.findEventById(id));
+    model.addAttribute("value", "wrongData");
+    return "editEvent";
+}
 
-        eventService.saveChangedEvent(LocalDateTime.parse(startTime),LocalDateTime.parse(stopTime),id);
-        return "redirect:events";
+
+@PostMapping("/saveEditEvent")
+    String saveEditEvent (String startTime, String stopTime, Long id){
+        if(startTime.isEmpty() || stopTime.isEmpty()){
+           return UriComponentsBuilder.fromPath("redirect:editEvent")
+                   .queryParam("id", id)
+                   .build().toString();
+        }
+        else {
+            eventService.saveChangedEvent(LocalDateTime.parse(startTime), LocalDateTime.parse(stopTime), id);
+            return "redirect:events";
+        }
 }
 
 @PostMapping("/deleteEvent")

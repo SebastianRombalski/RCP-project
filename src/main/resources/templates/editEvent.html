@@ -12,6 +12,11 @@
             margin-top: 50px;
             margin-left: 20px;
         }
+        .error{
+            margin-top: 50px;
+            text-align: center;
+            font-size: 30px;
+        }
     </style>
 </head>
 <body>
@@ -25,6 +30,8 @@
     <button type="submit" th:name="id" th:value="${event.id}">save</button>
 </form>
 <a href="/events">Back</a>
+
+<div class="error" th:if="${value}">Wrong Date</div>
 
 </body>
 </html>
