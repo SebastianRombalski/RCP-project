@@ -73,7 +73,10 @@ public class EventController {
 }
 
 @GetMapping("/addEvent")
-    String addEvent (Model model){
+    String addEvent (String value, Model model){
+        if(value != null){
+            model.addAttribute("value",value);
+        }
         model.addAttribute("employee", employeeService.findEmployees());
         return "addEvent";
 }
@@ -83,7 +86,7 @@ public class EventController {
         if(startTime.isEmpty() || stopTime.isEmpty() || employeeId==0){
             return UriComponentsBuilder
                     .fromPath("redirect:addEvent")
-                    .queryParam("value", true)
+                    .queryParam("value", "wrongData")
                     .build().toString();
         }
         else{
