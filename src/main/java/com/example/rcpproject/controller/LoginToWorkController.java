@@ -51,7 +51,7 @@ public class LoginToWorkController {
         else return "somethingWentsWrong";
     }
 
-    @PostMapping("/save")
+    @PostMapping("/sendLoginLogout")
     String loginToWork(@RequestParam String logincode) {
         EmployeeDTO employeeDTO = employeeService.employeeByLoginCode(logincode).orElse(null);
         if (!(employeeDTO == null)) {

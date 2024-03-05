@@ -28,7 +28,7 @@ public class EmployeeController {
     String employee(Long id, Model model){
         List<SectionDTO> sectionList = sectionService.findSections();
         model.addAttribute("sectionList", sectionList);
-        if (id!=null) {
+        if (id!=null && id!=0) {
             model.addAttribute("employee", employeeService.employeesBySection(id));
             return "employee";
         }

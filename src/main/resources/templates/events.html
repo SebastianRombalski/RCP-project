@@ -35,7 +35,7 @@
     <option value="0">select employee</option>
     <option th:each="employees : ${employees}" th:value="${employees.id}" th:text="${employees.firstName} + ' ' + ${employees.lastName}"></option>
 </select>
-    <button type="submit">add</button>
+    <button type="submit">filter</button>
 </form>
 <table>
     <thead>

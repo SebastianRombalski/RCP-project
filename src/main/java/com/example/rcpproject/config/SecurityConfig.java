@@ -18,6 +18,7 @@ class SecurityConfig {
             PathRequest.H2ConsoleRequestMatcher h2ConsoleRequestMatcher = PathRequest.toH2Console();
             http.authorizeHttpRequests(requests -> requests
                     .requestMatchers("/").permitAll()
+                    .requestMatchers("/sendLoginLogout").permitAll()
                     .requestMatchers("/login").permitAll()
                     .requestMatchers(h2ConsoleRequestMatcher).permitAll()
                     .anyRequest().authenticated()

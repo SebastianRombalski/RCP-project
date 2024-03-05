@@ -55,7 +55,7 @@ public class EventService  {
     }
 
     public List<EventDTO> findAllEvent (){
-        List<Event> allEvent = eventRepo.findAll(Sort.by(Sort.Direction.ASC, "employee_lastName"));
+        List<Event> allEvent = eventRepo.findAll(Sort.by(Sort.Direction.DESC, "employee_lastName"));
         List<EventDTO> allEventDTO = new ArrayList<>();
         for (Event e : allEvent) {
             allEventDTO.add(mapperDTO(e));
@@ -63,7 +63,7 @@ public class EventService  {
         return allEventDTO;
     }
     public List<EventInProgressDTO> findAllEventInProgress(){
-        List<EventInProgress> allEventInProgress = eventInProgressRepo.findAll(Sort.by(Sort.Direction.ASC, "employee_lastName"));
+        List<EventInProgress> allEventInProgress = eventInProgressRepo.findAll(Sort.by(Sort.Direction.DESC, "employee_lastName"));
         List<EventInProgressDTO> allEventInProgressDTO = new ArrayList<>();
         for (EventInProgress e: allEventInProgress ) {
             allEventInProgressDTO.add(mapperDTO(e));
