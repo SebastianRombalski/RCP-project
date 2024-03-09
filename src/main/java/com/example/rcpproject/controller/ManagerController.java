@@ -33,13 +33,13 @@ public class ManagerController {
         return "manager";
     }
 
-    @PostMapping ("/deleteManager")
+    @GetMapping ("/deleteManager")
     String deleteManager(@RequestParam Long id){
         managerService.deleteManager(id);
         return "redirect:manager";
     }
 
-    @PostMapping("/editManager")
+    @GetMapping("/editManager")
     String editManager(@RequestParam Long id, Model model){
         ManagerDTO managerDTO = managerService.findManagerById(id);
         List<SectionDTO> sectionList = sectionService.findSections();

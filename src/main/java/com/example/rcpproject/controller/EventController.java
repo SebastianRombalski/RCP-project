@@ -45,7 +45,7 @@ public class EventController {
         }
     }
 
-    @PostMapping("/filterEvents")
+    @GetMapping("/filterEvents")
     String filterEvents(String fromDate, String toDate, Long employeeID){
             return UriComponentsBuilder
                     .fromPath("redirect:events")
@@ -54,15 +54,18 @@ public class EventController {
                     .queryParam("id", employeeID)
                     .build().toString();
     }
-@PostMapping("/editEvent")
-    String editEvent(@RequestParam Long id, Model model){
-        model.addAttribute("event", eventService.findEventById(id));
-        return "editEvent";
-}
+//@GetMapping("/editEvent")
+//    String editEvent(@RequestParam Long id, Model model){
+//        model.addAttribute("event", eventService.findEventById(id));
+//        return "editEvent";
+//}
 
 @GetMapping("/editEvent")
-String editEventGet(@RequestParam Long id, Model model){
+String editEventGet(@RequestParam Long id, String value, Model model){
     model.addAttribute("event", eventService.findEventById(id));
+    if(value==null) {
+        return "editEvent";
+    }
     model.addAttribute("value", "wrongData");
     return "editEvent";
 }
@@ -73,6 +76,7 @@ String editEventGet(@RequestParam Long id, Model model){
         if(startTime.isEmpty() || stopTime.isEmpty()){
            return UriComponentsBuilder.fromPath("redirect:editEvent")
                    .queryParam("id", id)
+                   .queryParam("value", "wrongData")
                    .build().toString();
         }
         else {
@@ -81,7 +85,7 @@ String editEventGet(@RequestParam Long id, Model model){
         }
 }
 
-@PostMapping("/deleteEvent")
+@GetMapping("/deleteEvent")
     String deleteEvent(@RequestParam Long id){
         eventService.deleteEvent(id);
         return "redirect:events";

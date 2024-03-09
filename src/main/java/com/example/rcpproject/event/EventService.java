@@ -13,7 +13,11 @@ import static com.example.rcpproject.event.EventInProgressMapper.mapperDTO;
 import static com.example.rcpproject.employee.EmployeeMapper.mapperDTO;
 
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.Month;
+import java.time.Year;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -23,6 +27,8 @@ public class EventService  {
 
     private final EventRepo eventRepo;
     private final EventInProgressRepo eventInProgressRepo;
+
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 
     public EventService(EventRepo eventRepo, EventInProgressRepo eventInProgressRepo) {
         this.eventRepo = eventRepo;
@@ -42,14 +48,18 @@ public class EventService  {
 
     public boolean addEvent(EmployeeDTO employeeDTO){
         Optional<EventInProgress> eventInProgressOptional = eventInProgressRepo.findEventInProgressByEmployee_Id(employeeDTO.getId());
+        LocalDateTime localDateTime = LocalDateTime.now();
+        localDateTime.format(formatter);
+
         if(eventInProgressOptional.isPresent()){
             LocalDateTime dateStart = eventInProgressOptional.get().getDateStart();
-            eventRepo.save(new Event(dateStart, LocalDateTime.now(), eventInProgressOptional.get().getEmployee()));
+
+            eventRepo.save(new Event(dateStart, localDateTime, eventInProgressOptional.get().getEmployee()));
             eventInProgressRepo.delete(eventInProgressOptional.get());
             return true;
         }
         else{
-            eventInProgressRepo.save(new EventInProgress(LocalDateTime.now(),mapperDTO(employeeDTO)));
+            eventInProgressRepo.save(new EventInProgress(localDateTime,mapperDTO(employeeDTO)));
             return false;
         }
     }

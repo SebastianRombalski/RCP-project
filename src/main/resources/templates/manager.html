@@ -43,10 +43,10 @@
         <td th:text="*{login}">login</td>
 
 
-        <form method="post" action="/editManager">
+        <form method="get" action="/editManager">
             <td><button type="submit" th:name="id" th:value="${manager.id}">edit</button></td>
         </form>
-        <form method="post" action="/deleteManager">
+        <form method="get" action="/deleteManager">
             <td><button type="submit" th:name="id" th:value="${manager.id}">delete account</button></td>
         </form>
     </tbody>

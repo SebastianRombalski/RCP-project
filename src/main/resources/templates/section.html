@@ -18,6 +18,10 @@
         form{
             margin-top: 5px;
         }
+        .information{
+            text-align: center;
+            margin-top: 5px;
+        }
     </style>
 </head>
 <body>
@@ -43,10 +47,10 @@
 
 
 
-        <form method="post" action="/editSection">
+        <form method="get" action="/editSection">
             <td><button type="submit" th:name="id" th:value="${sections.id}">edit</button></td>
         </form>
-        <form method="post" action="/deleteSection">
+        <form method="get" action="/deleteSection">
             <td><button type="submit" th:name="id" th:value="${sections.id}">delete</button></td>
         </form>
     </tbody>
@@ -56,6 +60,7 @@
     <button type="submit">add new section</button>
 </form>
 </div>
+<p class="information" th:if="value" >Section has employee !</p>
 <a href="/menu">Back</a>
 </body>
 </html>

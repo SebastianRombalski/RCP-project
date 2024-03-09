@@ -26,7 +26,7 @@
 <body>
 <h1>events</h1>
 
-<form method="post" action="/filterEvents">
+<form method="get" action="/filterEvents">
     Filter :
     from date: <input type="date" th:name="fromDate" th:value="${fromDate}">
     to date: <input type="date" th:name="toDate" th:value="${toDate}">
@@ -53,20 +53,20 @@
     </tr>
     </thead>
     <tbody>
-<tr th:each="event, status: ${event}" th:object="${event}">
-    <td th:text="${status.count}">1</td>
-    <td th:text="*{employee.firstName}">Name</td>
-    <td th:text="*{employee.lastName}">Surname</td>
-    <td th:text="*{employee.section.description}">Section</td>
-    <td th:text="*{employee.section.shift}">Section</td>
-    <td th:text="*{dateStartWithoutTime}">Start working date</td>
-    <td th:text="*{timeStartWithoutDate}">Start working time</td>
-    <td th:text="*{dateStopWithoutTime}">Stop working date</td>
-    <td th:text="*{timeStopWithoutDate}">Stop working time</td>
-    <td th:text="*{timeInWork.hours +':'+ timeInWork.minutes}">Time in work</td>
+    <tr th:each="event, status: ${event}" th:object="${event}">
+        <td th:text="${status.count}">1</td>
+        <td th:text="*{employee.firstName}">Name</td>
+        <td th:text="*{employee.lastName}">Surname</td>
+        <td th:text="*{employee.section.description}">Section</td>
+        <td th:text="*{employee.section.shift}">Section</td>
+        <td th:text="*{dateStartWithoutTime}">Start working date</td>
+        <td th:text="*{timeStartWithoutDate}">Start working time</td>
+        <td th:text="*{dateStopWithoutTime}">Stop working date</td>
+        <td th:text="*{timeStopWithoutDate}">Stop working time</td>
+        <td th:text="*{timeInWork.hours +':'+ timeInWork.minutes}">Time in work</td>
 
-    <td><form method="post", action="/editEvent"><button type="submit" th:name="id" th:value="${event.id}">edit</button></form></td>
-    <td><form method="post", action="/deleteEvent"><button type="submit" th:name="id" th:value="${event.id}">delete</button></form></td>
+    <td><form method="get", action="/editEvent"><button type="submit" th:name="id" th:value="${event.id}">edit</button></form></td>
+    <td><form method="get", action="/deleteEvent"><button type="submit" th:name="id" th:value="${event.id}">delete</button></form></td>
 
     </tbody>
 </table>

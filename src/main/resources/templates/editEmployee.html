@@ -12,6 +12,11 @@
             margin-top: 50px;
             margin-left: 20px;
         }
+        .error{
+            margin-top: 50px;
+            text-align: center;
+            font-size: 30px;
+        }
     </style>
 </head>
 <body>
@@ -38,6 +43,6 @@
     <button type="submit" th:name="id" th:value="${employee.id}">save</button>
 </form>
 <a href="/employee">Back</a>
-
+<div class="error" th:if="${value}">Incorect data</div>
 </body>
 </html>

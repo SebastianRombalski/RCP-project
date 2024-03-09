@@ -1,5 +1,6 @@
 package com.example.rcpproject.controller;
 
+import com.example.rcpproject.employee.EmployeeService;
 import com.example.rcpproject.section.Section;
 import com.example.rcpproject.section.SectionDTO;
 import com.example.rcpproject.section.SectionService;
@@ -8,22 +9,25 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.util.UriComponentsBuilder;
 
 @Controller
 public class SectionController {
     private final SectionService sectionService;
+    private final EmployeeService employeeService;
 
-    public SectionController(SectionService sectionService) {
+    public SectionController(SectionService sectionService, EmployeeService employeeService) {
         this.sectionService = sectionService;
+        this.employeeService = employeeService;
     }
 
     @GetMapping("/section")
-    String section(Model model){
+    String section(String value, Model model){
         model.addAttribute("sections", sectionService.findSections());
         return "section";
     }
 
-    @PostMapping("/editSection")
+    @GetMapping("/editSection")
     String editSection(@RequestParam Long id, Model model){
         model.addAttribute("section", sectionService.findSectionDTOById(id));
         return "editSection";
@@ -49,5 +53,18 @@ public class SectionController {
     String saveSection(@RequestParam String description, @RequestParam Integer shift){
         sectionService.saveSection(new SectionDTO(description, shift));
         return "redirect:section";
+    }
+    @GetMapping("/deleteSection")
+    String deleteSection(@RequestParam Long id, Model model){
+        if(employeeService.employeesBySection(id).isEmpty()) {
+            sectionService.deleteSection(sectionService.findSectionDTOById(id));
+            model.addAttribute("sections", sectionService.findSections());
+            return "redirect:section";
+        }
+        else {
+            return UriComponentsBuilder.fromPath("redirect:section")
+                    .queryParam("value", "false")
+                    .build().toString();
+        }
     }
 }

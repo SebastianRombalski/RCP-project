@@ -33,4 +33,6 @@ public class SectionService {
     public void saveSection(SectionDTO sectionDTO){
         sectionRepo.save(mapperDTO(sectionDTO));
     }
+
+    public void deleteSection(SectionDTO sectionDTO){sectionRepo.delete(mapperDTO(sectionDTO));}
 }
