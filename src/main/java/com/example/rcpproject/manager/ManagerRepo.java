@@ -11,4 +11,5 @@ import java.util.Set;
 @Repository
 interface ManagerRepo extends JpaRepository<Manager, Long> {
     Optional<Manager> findManagerByLogin(String login);
+    List<Manager> findManagerBySections(Section section);
 }

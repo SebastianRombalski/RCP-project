@@ -23,6 +23,9 @@ public class SectionController {
 
     @GetMapping("/section")
     String section(String value, Model model){
+        if(value != null){
+            model.addAttribute("value", value);
+        }
         model.addAttribute("sections", sectionService.findSections());
         return "section";
     }
@@ -63,7 +66,7 @@ public class SectionController {
         }
         else {
             return UriComponentsBuilder.fromPath("redirect:section")
-                    .queryParam("value", "false")
+                    .queryParam("value", "error")
                     .build().toString();
         }
     }
