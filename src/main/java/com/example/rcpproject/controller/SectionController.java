@@ -1,6 +1,7 @@
 package com.example.rcpproject.controller;
 
 import com.example.rcpproject.employee.EmployeeService;
+import com.example.rcpproject.manager.ManagerService;
 import com.example.rcpproject.section.Section;
 import com.example.rcpproject.section.SectionDTO;
 import com.example.rcpproject.section.SectionService;
@@ -16,9 +17,12 @@ public class SectionController {
     private final SectionService sectionService;
     private final EmployeeService employeeService;
 
-    public SectionController(SectionService sectionService, EmployeeService employeeService) {
+    private final ManagerService managerService;
+
+    public SectionController(SectionService sectionService, EmployeeService employeeService, ManagerService managerService) {
         this.sectionService = sectionService;
         this.employeeService = employeeService;
+        this.managerService = managerService;
     }
 
     @GetMapping("/section")
@@ -60,6 +64,7 @@ public class SectionController {
     @GetMapping("/deleteSection")
     String deleteSection(@RequestParam Long id, Model model){
         if(employeeService.employeesBySection(id).isEmpty()) {
+            managerService.modifySectionForManager(sectionService.findSectionById(id));
             sectionService.deleteSection(sectionService.findSectionDTOById(id));
             model.addAttribute("sections", sectionService.findSections());
             return "redirect:section";
