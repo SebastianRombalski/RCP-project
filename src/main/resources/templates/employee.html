@@ -23,13 +23,13 @@
 <body>
 <h1>Employee : </h1>
 
-<form method="post" action="/search">
-<select name="id">
+<form method="get" action="/filter">
+<select name="sectionId">
     <option value="0">all section</option>
     <option th:each="sectionList : ${sectionList}" th:value="${sectionList.id}" th:text="${sectionList.description}"></option>
 </select>
 
-<button type="submit">search</button>
+<button type="submit">filter</button>
 </form>
 
 </div>
@@ -57,10 +57,10 @@
         <td th:text="*{section.shift}">Shift</td>
         <td th:text="*{status}">Status</td>
         <form method="post" action="/edit">
-            <td><button type="submit" th:name="id" th:value="${employee.id}">edit</button></td>
+            <td><button type="submit" th:name="employeeId" th:value="${employee.id}">edit</button></td>
         </form>
-        <form method="post" action="/change">
-        <td><button type="submit" th:name="id" th:value="${employee.id}">change</button></td>
+        <form method="post" action="/changeStatus">
+        <td><button type="submit" th:name="employeeId" th:value="${employee.id}">change</button></td>
         </form>
     </tbody>
     </tr>

@@ -25,11 +25,11 @@ public class EmployeeController {
     }
 
     @GetMapping("/employee")
-    String employee(Long id, Model model){
+    String employee(Long sectionId, Model model){
         List<SectionDTO> sectionList = sectionService.findSections();
         model.addAttribute("sectionList", sectionList);
-        if (id!=null && id!=0) {
-            model.addAttribute("employee", employeeService.employeesBySection(id));
+        if (sectionId!=null && sectionId!=0) {
+            model.addAttribute("employee", employeeService.employeesBySection(sectionId));
             return "employee";
         }
         else {
@@ -38,26 +38,26 @@ public class EmployeeController {
         }
     }
 
-    @PostMapping("/search")
-    String searchEmployee(@RequestParam Long id){
+    @GetMapping("/filter")
+    String filterEmployeeBySection(@RequestParam Long sectionId){
         return UriComponentsBuilder
                 .fromPath("redirect:employee")
-                .queryParam("id", id)
+                .queryParam("sectionId", sectionId)
                 .build().toString();
 
     }
 
     @PostMapping("/edit")
-    String editEmployee(@RequestParam Long id, Model model){
-        model.addAttribute("employee",employeeService.employeeById(id));
+    String editEmployee(@RequestParam Long employeeId, Model model){
+        model.addAttribute("employee",employeeService.employeeById(employeeId));
         model.addAttribute("listSection", sectionService.findSections());
 
         return "editEmployee";
     }
 
-    @PostMapping("/change")
-    String changeStatus(@RequestParam Long id){
-        employeeService.changeStatus(id);
+    @PostMapping("/changeStatus")
+    String changeStatus(@RequestParam Long employeeId){
+        employeeService.changeStatus(employeeId);
 
         return "redirect:employee";
     }
