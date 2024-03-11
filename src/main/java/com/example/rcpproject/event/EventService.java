@@ -28,7 +28,8 @@ public class EventService  {
     private final EventRepo eventRepo;
     private final EventInProgressRepo eventInProgressRepo;
 
-    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+    DateTimeFormatter formatterDate = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+    DateTimeFormatter formatterTime = DateTimeFormatter.ofPattern("HH:mm:ss");
 
     public EventService(EventRepo eventRepo, EventInProgressRepo eventInProgressRepo) {
         this.eventRepo = eventRepo;
@@ -48,8 +49,11 @@ public class EventService  {
 
     public boolean addEvent(EmployeeDTO employeeDTO){
         Optional<EventInProgress> eventInProgressOptional = eventInProgressRepo.findEventInProgressByEmployee_Id(employeeDTO.getId());
-        LocalDateTime localDateTime = LocalDateTime.now();
-        localDateTime.format(formatter);
+        LocalDateTime localDateTimeNow = LocalDateTime.now();
+        String formatedData = localDateTimeNow.format(formatterDate);
+        String formateTime = localDateTimeNow.format(formatterTime);
+        System.out.println(formatedData + "T" + formateTime);
+        LocalDateTime localDateTime = LocalDateTime.parse(formatedData + "T" + formateTime);
 
         if(eventInProgressOptional.isPresent()){
             LocalDateTime dateStart = eventInProgressOptional.get().getDateStart();
