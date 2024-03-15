@@ -1,48 +1,42 @@
 package com.example.rcpproject.employee;
 
 import com.example.rcpproject.section.Section;
+import jakarta.validation.constraints.Size;
+import org.springframework.lang.NonNull;
 
 
 public class EmployeeDTO {
 
     private Long id;
+    @NonNull
+    @Size(min =2,max = 50)
     private String firstName;
+    @NonNull
+    @Size(min =2,max = 50)
     private String lastName;
+    @NonNull
+    @Size(min = 5, max = 100)
     private String loginCode;
+    @NonNull
     private Section section;
-
+    @NonNull
     private String status;
 
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
+    public EmployeeDTO(@NonNull String firstName, @NonNull String lastName, @NonNull String loginCode,@NonNull String status, @NonNull Section section ) {
         this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
         this.lastName = lastName;
-    }
-
-    public String getLoginCode() {
-        return loginCode;
-    }
-
-    public void setLoginCode(String loginCode) {
         this.loginCode = loginCode;
-    }
-
-    public Section getSection() {
-        return section;
-    }
-
-    public void setSection(Section section) {
         this.section = section;
+        this.status = status;
+    }
+
+    public EmployeeDTO(Long id, @NonNull String firstName, @NonNull String lastName, @NonNull String loginCode,@NonNull String status, @NonNull Section section) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.loginCode = loginCode;
+        this.section = section;
+        this.status = status;
     }
 
     public Long getId() {
@@ -53,40 +47,48 @@ public class EmployeeDTO {
         this.id = id;
     }
 
+    @NonNull
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(@NonNull String firstName) {
+        this.firstName = firstName;
+    }
+
+    @NonNull
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(@NonNull String lastName) {
+        this.lastName = lastName;
+    }
+
+    @NonNull
+    public String getLoginCode() {
+        return loginCode;
+    }
+
+    public void setLoginCode(@NonNull String loginCode) {
+        this.loginCode = loginCode;
+    }
+
+    @NonNull
+    public Section getSection() {
+        return section;
+    }
+
+    public void setSection(@NonNull Section section) {
+        this.section = section;
+    }
+
+    @NonNull
     public String getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(@NonNull String status) {
         this.status = status;
-    }
-
-    public EmployeeDTO(Long id, String firstName, String lastName, String loginCode, Section section) {
-        this.id=id;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.loginCode = loginCode;
-        this.section = section;
-    }
-
-    public EmployeeDTO(String firstName, String lastName, String loginCode, String status, Section section) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.loginCode = loginCode;
-        this.status = status;
-        this.section = section;
-    }
-
-    public EmployeeDTO() {
-    }
-
-    @Override
-    public String toString() {
-        return "EmployeeDTO{" +
-                "firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", loginCode='" + loginCode + '\'' +
-                ", section=" + section +
-                '}';
     }
 }

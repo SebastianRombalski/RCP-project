@@ -16,9 +16,17 @@ import java.util.Set;
 public class ManagerDTO {
 
     private Long id;
+    @NonNull
+    @Size(min =2,max = 50)
     private String firstName;
+    @NonNull
+    @Size(min =2,max = 50)
     private String lastName;
+    @NonNull
+    @Size(min =2,max = 100)
     private String login;
+    @NonNull
+    @Size(min =2,max = 255)
     private String password;
     private List<Section> sections = new ArrayList<>();
 
@@ -33,15 +41,8 @@ public class ManagerDTO {
                 '}';
     }
 
-    public ManagerDTO(String firstName, String lastName, String password, List<Section> sections) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.login = firstName + "." + lastName;
-        this.password = password;
-        this.sections = sections;
-    }
 
-    public ManagerDTO(String firstName, String lastName, String login, String password, List<Section> sections) {
+    public ManagerDTO(@NonNull String firstName,@NonNull String lastName,@NonNull String login,@NonNull String password, List<Section> sections) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.login = login;
@@ -59,36 +60,36 @@ public class ManagerDTO {
     public void setId(Long id) {
         this.id = id;
     }
-
+    @NonNull
     public String getFirstName() {
         return firstName;
     }
 
-    public void setFirstName(String firstName) {
+    public void setFirstName(@NonNull String firstName) {
         this.firstName = firstName;
     }
-
+    @NonNull
     public String getLastName() {
         return lastName;
     }
 
-    public void setLastName(String lastName) {
+    public void setLastName(@NonNull String lastName) {
         this.lastName = lastName;
     }
-
+    @NonNull
     public String getLogin() {
         return login;
     }
 
-    public void setLogin(String login) {
+    public void setLogin(@NonNull String login) {
         this.login = login;
     }
-
+    @NonNull
     public String getPassword() {
         return password;
     }
 
-    public void setPassword(String password) {
+    public void setPassword(@NonNull String password) {
         this.password = password;
     }
 

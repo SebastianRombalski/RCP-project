@@ -29,14 +29,14 @@ public class EmployeeMapper {
     }
 
     public static EmployeeDTO mapperDTO(Employee employee){
-        EmployeeDTO employeeDTO = new EmployeeDTO();
-
-        employeeDTO.setFirstName(employee.getFirstName());
-        employeeDTO.setLastName(employee.getLastName());
-        employeeDTO.setSection(employee.getSection());
-        employeeDTO.setLoginCode(employee.getLoginCode());
-        employeeDTO.setId(employee.getId());
-        employeeDTO.setStatus(employee.getStatus());
+        EmployeeDTO employeeDTO = new EmployeeDTO(
+                employee.getId(),
+                employee.getFirstName(),
+                employee.getLastName(),
+                employee.getLoginCode(),
+                employee.getStatus(),
+                employee.getSection()
+        );
 
         return employeeDTO;
     }

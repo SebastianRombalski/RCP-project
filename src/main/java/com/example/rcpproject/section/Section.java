@@ -22,7 +22,7 @@ public class Section {
     public Section() {
     }
 
-    public Section(@NonNull String description, int shift) {
+    public Section(@NonNull String description,@NonNull int shift) {
         this.description = description;
         this.shift = shift;
     }

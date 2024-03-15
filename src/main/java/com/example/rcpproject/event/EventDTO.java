@@ -4,6 +4,8 @@ package com.example.rcpproject.event;
 
 
 import com.example.rcpproject.employee.Employee;
+import jakarta.validation.constraints.PastOrPresent;
+import org.springframework.lang.NonNull;
 
 import java.time.Duration;
 import java.time.LocalDate;
@@ -13,9 +15,14 @@ import java.time.LocalTime;
 
 public class EventDTO {
 
+    @NonNull
+    @PastOrPresent
     private LocalDateTime dateStart;
+    @NonNull
+    @PastOrPresent
     private LocalDateTime dateStop;
     private TimeForEvenet timeInWork;
+    @NonNull
     private Employee employee;
 
     private LocalDate dateStartWithoutTime;
@@ -30,7 +37,7 @@ public class EventDTO {
     public EventDTO() {
     }
 
-    public EventDTO(LocalDateTime dateStart, LocalDateTime dateStop, Employee employee) {
+    public EventDTO(@NonNull LocalDateTime dateStart, @NonNull LocalDateTime dateStop, @NonNull Employee employee) {
         this.dateStart = dateStart;
         this.dateStop = dateStop;
         this.timeInWork = getTime(dateStart, dateStop);
@@ -57,12 +64,12 @@ public class EventDTO {
     private LocalDate time(LocalDateTime date) {
         return date.toLocalDate();
     }
-
+    @NonNull
     public Employee getEmployee() {
         return employee;
     }
 
-    public void setEmployee(Employee employee) {
+    public void setEmployee(@NonNull Employee employee) {
         this.employee = employee;
     }
 
@@ -77,19 +84,20 @@ public class EventDTO {
     }
 
 
+    @NonNull
     public LocalDateTime getDateStart() {
         return dateStart;
     }
 
-    public void setDateStart(LocalDateTime dateStart) {
+    public void setDateStart(@NonNull LocalDateTime dateStart) {
         this.dateStart = dateStart;
     }
-
+    @NonNull
     public LocalDateTime getDateStop() {
         return dateStop;
     }
 
-    public void setDateStop(LocalDateTime dateStop) {
+    public void setDateStop(@NonNull LocalDateTime dateStop) {
         this.dateStop = dateStop;
     }
 
