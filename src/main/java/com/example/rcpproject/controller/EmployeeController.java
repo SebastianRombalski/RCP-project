@@ -65,7 +65,7 @@ public class EmployeeController {
         return "redirect:employee";
     }
 
-    @GetMapping("/add")
+    @GetMapping("/employee/addEmployee")
     String add( Model model){
         model.addAttribute("employee", new EmployeeDTO());
         model.addAttribute("listSection", sectionService.findSections());
@@ -73,7 +73,7 @@ public class EmployeeController {
     }
 
 
-    @PostMapping("/addEmployee")
+    @PostMapping("/employee/addEmployee")
     String addEmployee(@Valid @ModelAttribute("employee")EmployeeDTO employeeDTO, BindingResult bindingResult, Model model){
         if(bindingResult.hasErrors()){
             model.addAttribute("listSection", sectionService.findSections());
@@ -83,8 +83,8 @@ public class EmployeeController {
         else {
             employeeService.saveEmployee(employeeDTO);
             return UriComponentsBuilder
-                    .fromPath("redirect:employee")
-                    .queryParam("id", employeeDTO.getSection().getId())
+                    .fromPath("redirect:/employee")
+                    .queryParam("sectionId", employeeDTO.getSection().getId())
                     .build().toString();
         }
     }

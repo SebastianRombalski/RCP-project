@@ -22,7 +22,7 @@
 
 <h1>Add new employee :</h1>
 
-<form action="#" method="post" th:action="@{/addEmployee}" th:object="${employee}" >
+<form action="#" method="post" th:action="@{/employee/addEmployee}" th:object="${employee}" >
     <label>
         First name:
         <input type="text" placeholder="" th:field="*{firstName}">
@@ -36,7 +36,6 @@
         <input type="text" placeholder="" th:field="*{loginCode}">
     </label>
     <select th:field="*{section.id}">
-<!--        <option value="0">select section</option>-->
         <option th:each="listSection : ${listSection}" th:value="${listSection.id}" th:text="'Section: ' + ${listSection.description} + ' shift: ' + ${listSection.shift}"></option>
     </select>
     <button type="submit" >add</button>

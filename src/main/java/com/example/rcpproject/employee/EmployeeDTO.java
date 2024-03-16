@@ -3,6 +3,7 @@ package com.example.rcpproject.employee;
 import com.example.rcpproject.section.Section;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
+import org.hibernate.validator.constraints.UniqueElements;
 import org.springframework.lang.NonNull;
 
 
