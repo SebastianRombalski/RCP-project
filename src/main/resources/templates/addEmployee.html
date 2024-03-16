@@ -18,24 +18,24 @@
 
 <h1>Add new employee :</h1>
 
-<form method="post" action="/addEmployee">
+<form action="#" method="post" th:action="@{/addEmployee}" th:object="${employee}" >
     <label>
         First name:
-        <input name="firstName" placeholder="">
+        <input type="text" placeholder="" th:field="*{firstName}">
     </label>
     <label>
         Last name:
-        <input name="lastName" placeholder="">
+        <input type="text" placeholder="" th:field="*{lastName}">
     </label>
     <label>
         login code:
-        <input name="loginCode" placeholder="">
+        <input type="text" placeholder="" th:field="*{loginCode}">
     </label>
-    <select name="sectionId">
+    <select th:field="*{section.id}">
         <option value="0">select section</option>
         <option th:each="listSection : ${listSection}" th:value="${listSection.id}" th:text="'Section: ' + ${listSection.description} + ' shift: ' + ${listSection.shift}"></option>
     </select>
-    <button type="submit">add</button>
+    <button type="submit" >add</button>
 </form>
 
 <a href="/employee">Back</a>

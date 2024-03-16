@@ -39,6 +39,10 @@ public class EmployeeDTO {
         this.status = status;
     }
 
+    public EmployeeDTO() {
+
+    }
+
     public Long getId() {
         return id;
     }

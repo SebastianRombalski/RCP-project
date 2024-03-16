@@ -5,9 +5,12 @@ import com.example.rcpproject.employee.EmployeeService;
 import com.example.rcpproject.section.SectionDTO;
 import com.example.rcpproject.section.SectionService;
 import jakarta.transaction.Transactional;
+import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -64,21 +67,33 @@ public class EmployeeController {
 
     @GetMapping("/add")
     String add( Model model){
+        model.addAttribute("employee", new EmployeeDTO());
         model.addAttribute("listSection", sectionService.findSections());
         return "addEmployee";
     }
 
+//    @PostMapping("/addEmployee")
+//    String addEmployee(@RequestParam String firstName,
+//                       @RequestParam String lastName,
+//                       @RequestParam String loginCode,
+//                       @RequestParam Long sectionId){
+//        employeeService.saveEmployee(new EmployeeDTO(firstName, lastName, loginCode,"active", sectionService.findSectionById(sectionId)));
+//        return UriComponentsBuilder
+//                .fromPath("redirect:employee")
+//                .queryParam("id", sectionId)
+//                .build().toString();
+//    }
+
     @PostMapping("/addEmployee")
-    String addEmployee(@RequestParam String firstName,
-                       @RequestParam String lastName,
-                       @RequestParam String loginCode,
-                       @RequestParam Long sectionId){
-        employeeService.saveEmployee(new EmployeeDTO(firstName, lastName, loginCode,"active", sectionService.findSectionById(sectionId)));
+    String addEmployee(@Valid @ModelAttribute("employee")EmployeeDTO employeeDTO, BindingResult bindingResult){
+        employeeDTO.setStatus("active");
+        employeeService.saveEmployee(employeeDTO);
         return UriComponentsBuilder
                 .fromPath("redirect:employee")
-                .queryParam("id", sectionId)
+                .queryParam("id", employeeDTO.getSection().getId())
                 .build().toString();
     }
+
 
     @PostMapping("/saveEditEmployee")
     String saveEditEmployee(@RequestParam Long id,
@@ -97,4 +112,14 @@ employeeService.saveEmployee(employeeDTO);
                 .queryParam("id", sectionId)
                 .build().toString();
     }
+//    @PostMapping("/saveEditEmployee")
+//    String saveEditEmployee(EmployeeDTO employeeDTO){
+//employeeService.saveEmployee(employeeDTO);
+//        return UriComponentsBuilder
+//                .fromPath("redirect:employee")
+//                .queryParam("id", employeeDTO.getSection().getId())
+//                .build().toString();
+//    }
+
+
 }

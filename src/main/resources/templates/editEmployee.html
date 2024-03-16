@@ -23,7 +23,7 @@
 
 <h1>Add new employee :</h1>
 
-<form method="post" action="/saveEditEmployee">
+<form method="post" action="/saveEditEmployee" th:object="employeeDTO">
     <label>
         First name:
         <input name="firstName" th:field="${employee.firstName}">
