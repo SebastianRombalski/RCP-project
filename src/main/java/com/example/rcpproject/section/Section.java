@@ -1,6 +1,7 @@
 package com.example.rcpproject.section;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import org.springframework.lang.NonNull;
 
@@ -13,16 +14,16 @@ public class Section {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NonNull
+    @NotNull
     @Size(min=2,max=50)
     private String description;
-    @NonNull
+    @NotNull
     private int shift;
 
     public Section() {
     }
 
-    public Section(@NonNull String description,@NonNull int shift) {
+    public Section(@NotNull String description,@NotNull int shift) {
         this.description = description;
         this.shift = shift;
     }
@@ -35,12 +36,12 @@ public class Section {
         this.id = id;
     }
 
-    @NonNull
+    @NotNull
     public String getDescription() {
         return description;
     }
 
-    public void setDescription(@NonNull String description) {
+    public void setDescription(@NotNull String description) {
         this.description = description;
     }
 

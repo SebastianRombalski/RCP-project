@@ -2,6 +2,7 @@ package com.example.rcpproject.manager;
 
 import com.example.rcpproject.section.Section;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import org.springframework.lang.NonNull;
 
@@ -18,16 +19,16 @@ public class Manager {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NonNull
+    @NotNull
     @Size(min =2,max = 50)
     private String firstName;
-    @NonNull
+    @NotNull
     @Size(min =2,max = 50)
     private String lastName;
-    @NonNull
+    @NotNull
     @Size(min =2,max = 100)
     private String login;
-    @NonNull
+    @NotNull
     @Size(min =2,max = 255)
     private String password;
     @ManyToMany(fetch = FetchType.EAGER)
@@ -40,7 +41,7 @@ public class Manager {
     public Manager() {
     }
 
-    public Manager(@NonNull String firstName, @NonNull String lastName, @NonNull String login, @NonNull String password, List<Section> sections) {
+    public Manager(@NotNull String firstName, @NotNull String lastName, @NotNull String login, @NotNull String password, List<Section> sections) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.login = login;
@@ -56,39 +57,39 @@ public class Manager {
         this.id = id;
     }
 
-    @NonNull
+    @NotNull
     public String getFirstName() {
         return firstName;
     }
 
-    public void setFirstName(@NonNull String firstName) {
+    public void setFirstName(@NotNull String firstName) {
         this.firstName = firstName;
     }
 
-    @NonNull
+    @NotNull
     public String getLastName() {
         return lastName;
     }
 
-    public void setLastName(@NonNull String lastName) {
+    public void setLastName(@NotNull String lastName) {
         this.lastName = lastName;
     }
 
-    @NonNull
+    @NotNull
     public String getLogin() {
         return login;
     }
 
-    public void setLogin(@NonNull String login) {
+    public void setLogin(@NotNull String login) {
         this.login = login;
     }
 
-    @NonNull
+    @NotNull
     public String getPassword() {
         return password;
     }
 
-    public void setPassword(@NonNull String password) {
+    public void setPassword(@NotNull String password) {
         this.password = password;
     }
 

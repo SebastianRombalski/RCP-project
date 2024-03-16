@@ -12,6 +12,10 @@
             margin-top: 50px;
             margin-left: 20px;
         }
+        .error {
+            color: red;
+            font-size: 0.8rem;
+        }
     </style>
 </head>
 <body>
@@ -32,11 +36,16 @@
         <input type="text" placeholder="" th:field="*{loginCode}">
     </label>
     <select th:field="*{section.id}">
-        <option value="0">select section</option>
+<!--        <option value="0">select section</option>-->
         <option th:each="listSection : ${listSection}" th:value="${listSection.id}" th:text="'Section: ' + ${listSection.description} + ' shift: ' + ${listSection.shift}"></option>
     </select>
     <button type="submit" >add</button>
 </form>
+<p th:errors="${employee.firstName}" class="error">First Name</p>
+<p th:errors="${employee.lastName}" class="error"></p>
+<p th:errors="${employee.loginCode}" class="error"></p>
+<p th:errors="${employee.section}" class="error"></p>
+
 
 <a href="/employee">Back</a>
 

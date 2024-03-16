@@ -5,6 +5,7 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import org.springframework.lang.NonNull;
 
@@ -16,16 +17,16 @@ import java.util.Set;
 public class ManagerDTO {
 
     private Long id;
-    @NonNull
+    @NotNull
     @Size(min =2,max = 50)
     private String firstName;
-    @NonNull
+    @NotNull
     @Size(min =2,max = 50)
     private String lastName;
-    @NonNull
+    @NotNull
     @Size(min =2,max = 100)
     private String login;
-    @NonNull
+    @NotNull
     @Size(min =2,max = 255)
     private String password;
     private List<Section> sections = new ArrayList<>();
@@ -42,7 +43,7 @@ public class ManagerDTO {
     }
 
 
-    public ManagerDTO(@NonNull String firstName,@NonNull String lastName,@NonNull String login,@NonNull String password, List<Section> sections) {
+    public ManagerDTO(@NotNull String firstName,@NotNull String lastName,@NotNull String login,@NotNull String password, List<Section> sections) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.login = login;
@@ -60,36 +61,36 @@ public class ManagerDTO {
     public void setId(Long id) {
         this.id = id;
     }
-    @NonNull
+    @NotNull
     public String getFirstName() {
         return firstName;
     }
 
-    public void setFirstName(@NonNull String firstName) {
+    public void setFirstName(@NotNull String firstName) {
         this.firstName = firstName;
     }
-    @NonNull
+    @NotNull
     public String getLastName() {
         return lastName;
     }
 
-    public void setLastName(@NonNull String lastName) {
+    public void setLastName(@NotNull String lastName) {
         this.lastName = lastName;
     }
-    @NonNull
+    @NotNull
     public String getLogin() {
         return login;
     }
 
-    public void setLogin(@NonNull String login) {
+    public void setLogin(@NotNull String login) {
         this.login = login;
     }
-    @NonNull
+    @NotNull
     public String getPassword() {
         return password;
     }
 
-    public void setPassword(@NonNull String password) {
+    public void setPassword(@NotNull String password) {
         this.password = password;
     }
 

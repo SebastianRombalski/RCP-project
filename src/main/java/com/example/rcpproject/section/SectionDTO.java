@@ -1,14 +1,15 @@
 package com.example.rcpproject.section;
 
 
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import org.springframework.lang.NonNull;
 
 public class SectionDTO {
-    @NonNull
+    @NotNull
     @Size(min=2,max=50)
     private String description;
-    @NonNull
+    @NotNull
     private int shift;
 
     private Long id;
@@ -16,13 +17,13 @@ public class SectionDTO {
     public SectionDTO() {
     }
 
-    public SectionDTO(Long id,@NonNull String description,@NonNull int shift) {
+    public SectionDTO(Long id,@NotNull String description,@NotNull int shift) {
         this.description = description;
         this.shift = shift;
         this.id = id;
     }
 
-    public SectionDTO(@NonNull String description,@NonNull int shift) {
+    public SectionDTO(@NotNull String description,@NotNull int shift) {
         this.description = description;
         this.shift = shift;
     }
@@ -34,20 +35,20 @@ public class SectionDTO {
     public void setId(Long id) {
         this.id = id;
     }
-    @NonNull
+    @NotNull
     public String getDescription() {
         return description;
     }
 
-    public void setDescription(@NonNull String description) {
+    public void setDescription(@NotNull String description) {
         this.description = description;
     }
-    @NonNull
+    @NotNull
     public int getShift() {
         return shift;
     }
 
-    public void setShift(@NonNull int shift) {
+    public void setShift(@NotNull int shift) {
         this.shift = shift;
     }
 

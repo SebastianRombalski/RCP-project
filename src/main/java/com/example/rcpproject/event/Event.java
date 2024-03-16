@@ -2,6 +2,7 @@ package com.example.rcpproject.event;
 
 import com.example.rcpproject.employee.Employee;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.PastOrPresent;
 import org.springframework.lang.NonNull;
 
@@ -15,52 +16,52 @@ public class Event {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NonNull
+    @NotNull
     @PastOrPresent
     private LocalDateTime dateStart;
 
-    @NonNull
+    @NotNull
     @PastOrPresent
     private LocalDateTime dateStop;
 
     @ManyToOne
     @JoinColumn(name = "employee_id")
-    @NonNull
+    @NotNull
     private Employee employee;
 
     public Event() {
     }
 
-    public Event(@NonNull LocalDateTime dateStart, @NonNull LocalDateTime dateStop, @NonNull Employee employee) {
+    public Event(@NotNull LocalDateTime dateStart, @NotNull LocalDateTime dateStop, @NotNull Employee employee) {
         this.dateStart = dateStart;
         this.dateStop = dateStop;
         this.employee = employee;
     }
 
-    @NonNull
+    @NotNull
     public LocalDateTime getDateStart() {
         return dateStart;
     }
 
-    public void setDateStart(@NonNull LocalDateTime dateStart) {
+    public void setDateStart(@NotNull LocalDateTime dateStart) {
         this.dateStart = dateStart;
     }
 
-    @NonNull
+    @NotNull
     public LocalDateTime getDateStop() {
         return dateStop;
     }
 
-    public void setDateStop(@NonNull LocalDateTime dateStop) {
+    public void setDateStop(@NotNull LocalDateTime dateStop) {
         this.dateStop = dateStop;
     }
 
-    @NonNull
+    @NotNull
     public Employee getEmployee() {
         return employee;
     }
 
-    public void setEmployee(@NonNull Employee employee) {
+    public void setEmployee(@NotNull Employee employee) {
         this.employee = employee;
     }
 

@@ -2,6 +2,7 @@ package com.example.rcpproject.employee;
 
 import com.example.rcpproject.section.Section;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import org.springframework.lang.NonNull;
 
@@ -13,24 +14,24 @@ public class Employee {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NonNull
+    @NotNull
     @Size(min =2,max = 50)
     private String firstName;
-    @NonNull
+    @NotNull
     @Size(min =2,max = 50)
     private String lastName;
-    @NonNull
+    @NotNull
     @Size(min = 5, max = 100)
     private String loginCode;
 
-    @NonNull
+    @NotNull
     private String status;
 
     @OneToOne
-    @NonNull
+    @NotNull
     private Section section;
 
-    public Employee(@NonNull String firstName, @NonNull String lastName, @NonNull String loginCode, @NonNull Section section) {
+    public Employee(@NotNull String firstName, @NotNull String lastName, @NotNull String loginCode, @NotNull Section section) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.loginCode = loginCode;
@@ -47,48 +48,48 @@ public class Employee {
     public void setId(Long id){
         this.id=id;
     }
-    @NonNull
+    @NotNull
     public String getFirstName() {
         return firstName;
     }
 
-    public void setFirstName(@NonNull String name) {
+    public void setFirstName(@NotNull String name) {
         this.firstName = name;
     }
 
-    @NonNull
+    @NotNull
     public String getLastName() {
         return lastName;
     }
 
-    public void setLastName(@NonNull String surname) {
+    public void setLastName(@NotNull String surname) {
         this.lastName = surname;
     }
 
-    @NonNull
+    @NotNull
     public String getLoginCode() {
         return loginCode;
     }
 
-    public void setLoginCode(@NonNull String loginCode) {
+    public void setLoginCode(@NotNull String loginCode) {
         this.loginCode = loginCode;
     }
 
-    @NonNull
+    @NotNull
     public String getStatus() {
         return status;
     }
 
-    public void setStatus(@NonNull String status) {
+    public void setStatus(@NotNull String status) {
         this.status = status;
     }
 
-    @NonNull
+    @NotNull
     public Section getSection() {
         return section;
     }
 
-    public void setSection(@NonNull Section section) {
+    public void setSection(@NotNull Section section) {
         this.section = section;
     }
 

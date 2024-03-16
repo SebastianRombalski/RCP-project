@@ -4,8 +4,8 @@ package com.example.rcpproject.event;
 
 
 import com.example.rcpproject.employee.Employee;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.PastOrPresent;
-import org.springframework.lang.NonNull;
 
 import java.time.Duration;
 import java.time.LocalDate;
@@ -15,14 +15,14 @@ import java.time.LocalTime;
 
 public class EventDTO {
 
-    @NonNull
+    @NotNull
     @PastOrPresent
     private LocalDateTime dateStart;
-    @NonNull
+    @NotNull
     @PastOrPresent
     private LocalDateTime dateStop;
     private TimeForEvenet timeInWork;
-    @NonNull
+    @NotNull
     private Employee employee;
 
     private LocalDate dateStartWithoutTime;
@@ -37,7 +37,7 @@ public class EventDTO {
     public EventDTO() {
     }
 
-    public EventDTO(@NonNull LocalDateTime dateStart, @NonNull LocalDateTime dateStop, @NonNull Employee employee) {
+    public EventDTO(@NotNull LocalDateTime dateStart, @NotNull LocalDateTime dateStop, @NotNull Employee employee) {
         this.dateStart = dateStart;
         this.dateStop = dateStop;
         this.timeInWork = getTime(dateStart, dateStop);
@@ -64,12 +64,12 @@ public class EventDTO {
     private LocalDate time(LocalDateTime date) {
         return date.toLocalDate();
     }
-    @NonNull
+    @NotNull
     public Employee getEmployee() {
         return employee;
     }
 
-    public void setEmployee(@NonNull Employee employee) {
+    public void setEmployee(@NotNull Employee employee) {
         this.employee = employee;
     }
 
@@ -84,20 +84,20 @@ public class EventDTO {
     }
 
 
-    @NonNull
+    @NotNull
     public LocalDateTime getDateStart() {
         return dateStart;
     }
 
-    public void setDateStart(@NonNull LocalDateTime dateStart) {
+    public void setDateStart(@NotNull LocalDateTime dateStart) {
         this.dateStart = dateStart;
     }
-    @NonNull
+    @NotNull
     public LocalDateTime getDateStop() {
         return dateStop;
     }
 
-    public void setDateStop(@NonNull LocalDateTime dateStop) {
+    public void setDateStop(@NotNull LocalDateTime dateStop) {
         this.dateStop = dateStop;
     }
 
