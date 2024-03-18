@@ -12,9 +12,8 @@
             margin-top: 50px;
             margin-left: 20px;
         }
-        .error{
-            margin-top: 50px;
-            text-align: center;
+        .error {
+            color: red;
             font-size: 30px;
         }
     </style>
@@ -42,7 +41,13 @@
 
     <button type="submit" th:name="id" th:value="${employee.id}">save</button>
 </form>
+
+<p th:errors="${employee.firstName}" class="error">First Name</p>
+<p th:errors="${employee.lastName}" class="error"></p>
+<p th:errors="${employee.loginCode}" class="error"></p>
+<p th:errors="${employee.section}" class="error"></p>
+<p th:if="${loginCode}" class="error" th:text="${loginCode}"></p>
+
 <a href="/employee">Back</a>
-<div class="error" th:if="${value}">Incorect data</div>
 </body>
 </html>

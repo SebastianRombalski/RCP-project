@@ -94,11 +94,23 @@ public class EmployeeController {
 
     @PostMapping("/saveEditEmployee")
     String saveEditEmployee(@Valid @ModelAttribute("employee")EmployeeDTO employeeDTO, BindingResult bindingResult, Model model){
-employeeService.saveEmployee(employeeDTO);
-        return UriComponentsBuilder
-                .fromPath("redirect:employee")
-                .queryParam("id", employeeDTO.getSection().getId())
-                .build().toString();
+
+if(employeeService.checkLoginCode(employeeDTO.getLoginCode()) && employeeService.employeeByLogin(employeeDTO.getLoginCode()).getId() != employeeDTO.getId()){
+    model.addAttribute("listSection", sectionService.findSections());
+    model.addAttribute("loginCode", "This code is already used");
+    return "editEmployee";
+}
+else if (bindingResult.hasErrors()){
+    model.addAttribute("listSection", sectionService.findSections());
+    return "editEmployee";
+}
+else {
+    employeeService.saveEmployee(employeeDTO);
+    return UriComponentsBuilder
+            .fromPath("redirect:employee")
+            .queryParam("id", employeeDTO.getSection().getId())
+            .build().toString();
+}
     }
 
 //    @PostMapping("/saveEditEmployee")
