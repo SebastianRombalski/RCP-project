@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Add new employee</title>
+    <title>Edit employee</title>
     <style>
         a{
             position: absolute; left: 1%; top: 5px;
@@ -21,22 +21,22 @@
 </head>
 <body>
 
-<h1>Add new employee :</h1>
+<h1>Edit employee :</h1>
 
-<form method="post" action="/saveEditEmployee" th:object="employeeDTO">
+<form action="#" method="post" th:action="@{/saveEditEmployee}" th:object="${employee}" >
     <label>
         First name:
-        <input name="firstName" th:field="${employee.firstName}">
+        <input type="text" th:field="*{firstName}">
     </label>
     <label>
         Last name:
-        <input name="lastName" th:field="${employee.lastName}">
+        <input type="text" th:field="*{lastName}">
     </label>
     <label>
         login code:
-        <input name="loginCode" th:field="${employee.loginCode}">
+        <input type="text" th:field="*{loginCode}">
     </label>
-    <select name="sectionId">
+    <select th:field="*{section.id}">
         <option th:each="listSection : ${listSection}" th:value="${listSection.id}" th:text="'Section: ' + ${listSection.description} + ' shift: ' + ${listSection.shift}"></option>
     </select>
 

@@ -56,7 +56,7 @@
         <td th:text="*{section.description}">Section</td>
         <td th:text="*{section.shift}">Shift</td>
         <td th:text="*{status}">Status</td>
-        <form method="post" action="/edit">
+        <form method="get" action="/employee/edit">
             <td><button type="submit" th:name="employeeId" th:value="${employee.id}">edit</button></td>
         </form>
         <form method="post" action="/changeStatus">
@@ -65,7 +65,7 @@
     </tbody>
     </tr>
 </table>
-<form method="get" action="/employee/addEmployee">
+<form method="get" action="/employee/add">
 <button type="submit">add new employee</button>
         </form>
 <a href="/menu">Back</a>

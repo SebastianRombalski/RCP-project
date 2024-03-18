@@ -50,13 +50,6 @@ public class EmployeeController {
 
     }
 
-    @PostMapping("/edit")
-    String editEmployee(@RequestParam Long employeeId, Model model){
-        model.addAttribute("employee",employeeService.employeeById(employeeId));
-        model.addAttribute("listSection", sectionService.findSections());
-
-        return "editEmployee";
-    }
 
     @PostMapping("/changeStatus")
     String changeStatus(@RequestParam Long employeeId){
@@ -65,7 +58,7 @@ public class EmployeeController {
         return "redirect:employee";
     }
 
-    @GetMapping("/employee/addEmployee")
+    @GetMapping("/employee/add")
     String add( Model model){
         model.addAttribute("employee", new EmployeeDTO());
         model.addAttribute("listSection", sectionService.findSections());
@@ -73,10 +66,13 @@ public class EmployeeController {
     }
 
 
-    @PostMapping("/employee/addEmployee")
+    @PostMapping("/employee/saveNewEmployee")
     String addEmployee(@Valid @ModelAttribute("employee")EmployeeDTO employeeDTO, BindingResult bindingResult, Model model){
-        if(bindingResult.hasErrors()){
+        if(bindingResult.hasErrors() || employeeService.checkLoginCode(employeeDTO.getLoginCode())){
             model.addAttribute("listSection", sectionService.findSections());
+            if(employeeService.checkLoginCode(employeeDTO.getLoginCode())){
+                model.addAttribute("loginCode", "This code is already used");
+            }
         return "addEmployee";
 
         }
@@ -88,33 +84,39 @@ public class EmployeeController {
                     .build().toString();
         }
     }
+    @GetMapping("/employee/edit")
+    String editEmployee(@RequestParam Long employeeId, Model model){
+        model.addAttribute("employee",employeeService.employeeById(employeeId));
+        model.addAttribute("listSection", sectionService.findSections());
 
+        return "editEmployee";
+    }
 
     @PostMapping("/saveEditEmployee")
-    String saveEditEmployee(@RequestParam Long id,
-                            @RequestParam String firstName,
-                            @RequestParam String lastName,
-                            @RequestParam String loginCode,
-                            @RequestParam Long sectionId){
-EmployeeDTO employeeDTO = employeeService.employeeById(id);
-employeeDTO.setSection(sectionService.findSectionById(sectionId));
-employeeDTO.setFirstName(firstName);
-employeeDTO.setLastName(lastName);
-employeeDTO.setLoginCode(loginCode);
+    String saveEditEmployee(@Valid @ModelAttribute("employee")EmployeeDTO employeeDTO, BindingResult bindingResult, Model model){
 employeeService.saveEmployee(employeeDTO);
         return UriComponentsBuilder
                 .fromPath("redirect:employee")
-                .queryParam("id", sectionId)
+                .queryParam("id", employeeDTO.getSection().getId())
                 .build().toString();
     }
+
 //    @PostMapping("/saveEditEmployee")
-//    String saveEditEmployee(EmployeeDTO employeeDTO){
-//employeeService.saveEmployee(employeeDTO);
+//    String saveEditEmployee(@RequestParam Long id,
+//                            @RequestParam String firstName,
+//                            @RequestParam String lastName,
+//                            @RequestParam String loginCode,
+//                            @RequestParam Long sectionId){
+//        EmployeeDTO employeeDTO = employeeService.employeeById(id);
+//        employeeDTO.setSection(sectionService.findSectionById(sectionId));
+//        employeeDTO.setFirstName(firstName);
+//        employeeDTO.setLastName(lastName);
+//        employeeDTO.setLoginCode(loginCode);
+//        employeeService.saveEmployee(employeeDTO);
 //        return UriComponentsBuilder
 //                .fromPath("redirect:employee")
-//                .queryParam("id", employeeDTO.getSection().getId())
+//                .queryParam("id", sectionId)
 //                .build().toString();
 //    }
-
 
 }

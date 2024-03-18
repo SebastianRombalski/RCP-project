@@ -14,7 +14,7 @@
         }
         .error {
             color: red;
-            font-size: 0.8rem;
+            font-size: 30px;
         }
     </style>
 </head>
@@ -22,7 +22,7 @@
 
 <h1>Add new employee :</h1>
 
-<form action="#" method="post" th:action="@{/employee/addEmployee}" th:object="${employee}" >
+<form action="#" method="post" th:action="@{/employee/saveNewEmployee}" th:object="${employee}" >
     <label>
         First name:
         <input type="text" placeholder="" th:field="*{firstName}">
@@ -44,6 +44,7 @@
 <p th:errors="${employee.lastName}" class="error"></p>
 <p th:errors="${employee.loginCode}" class="error"></p>
 <p th:errors="${employee.section}" class="error"></p>
+<p th:if="${loginCode}" class="error" th:text="${loginCode}"></p>
 
 
 <a href="/employee">Back</a>

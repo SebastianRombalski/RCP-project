@@ -79,5 +79,12 @@ public class EmployeeService {
        return employeeRepo.findAll().stream().map(EmployeeMapper::mapperDTO).toList();
     }
 
+    public boolean checkLoginCode(String loginCode){
+        Optional<Employee> employeeByLoginCode = employeeRepo.findEmployeeByLoginCode(loginCode);
+        if(employeeByLoginCode.isPresent()) {
+            return true;
+        }
+        else return false;
+    }
 
 }
