@@ -36,7 +36,7 @@ VALUES
 INSERT INTO
     managers (first_name, last_name, login, password)
 VALUES
-    ('manager', 'everyone', 'manager.everyone', 'password');
+    ('manager', 'everyone', 'manager.everyone', '{argon2}$argon2id$v=19$m=16384,t=2,p=1$SZzEV6B2Oez84fO1dmVP7Q$gxAVWx98dU+Q+6WLtIElM0BYdIUWPzC9Fd4VJo2rznI');
 
 INSERT INTO
     manager_sections (manager_id, section_id)

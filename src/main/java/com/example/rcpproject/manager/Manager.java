@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import org.springframework.lang.NonNull;
+import org.springframework.security.crypto.argon2.Argon2PasswordEncoder;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -45,7 +46,8 @@ public class Manager {
         this.firstName = firstName;
         this.lastName = lastName;
         this.login = login;
-        this.password = password;
+        String correctPassword = "{argon2}"+ Argon2PasswordEncoder.defaultsForSpringSecurity_v5_8().encode(password);
+        this.password = correctPassword;
         this.sections = sections;
     }
 
