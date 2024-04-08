@@ -10,8 +10,8 @@ public class RcpProjectApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(RcpProjectApplication.class, args);
-        String haslo ="{argon2}" + Argon2PasswordEncoder.defaultsForSpringSecurity_v5_8().encode("password");
-        System.out.println(haslo);
+//        String haslo ="{argon2}" + Argon2PasswordEncoder.defaultsForSpringSecurity_v5_8().encode("password");
+//        System.out.println(haslo);
     }
 
 }
