@@ -3,13 +3,13 @@ package com.example.rcpproject.manager;
 public class ManagerMapper {
 
     public static ManagerDTO mapperDTO(Manager manager) {
-        ManagerDTO managerDTO = new ManagerDTO(manager.getFirstName(), manager.getLastName(), manager.getLogin(), manager.getPassword(), manager.getSections());
+        ManagerDTO managerDTO = new ManagerDTO(manager.getFirstName(), manager.getLastName(), manager.getLogin(), manager.getPassword(), manager.getSections(), manager.getRole());
         managerDTO.setId(manager.getId());
         return managerDTO;
     }
 
     public static Manager mapperDTO(ManagerDTO managerDTO){
-        Manager manager = new Manager(managerDTO.getFirstName(), managerDTO.getLastName(), managerDTO.getLogin(), managerDTO.getPassword(), managerDTO.getSections());
+        Manager manager = new Manager(managerDTO.getFirstName(), managerDTO.getLastName(), managerDTO.getLogin(), managerDTO.getPassword(),managerDTO.getRole(), managerDTO.getSections());
         if(managerDTO.getId()!=null) {
             manager.setId(managerDTO.getId());
         }

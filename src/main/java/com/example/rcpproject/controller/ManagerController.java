@@ -3,6 +3,8 @@ package com.example.rcpproject.controller;
 import com.example.rcpproject.manager.Manager;
 import com.example.rcpproject.manager.ManagerDTO;
 import com.example.rcpproject.manager.ManagerService;
+import com.example.rcpproject.role.RoleRepo;
+import com.example.rcpproject.role.RoleService;
 import com.example.rcpproject.section.SectionDTO;
 import com.example.rcpproject.section.SectionMapper;
 import com.example.rcpproject.section.SectionService;
@@ -21,10 +23,12 @@ import java.util.List;
 public class ManagerController {
    private final ManagerService managerService;
    private final SectionService sectionService;
+    private final RoleService roleService;
 
-    public ManagerController(ManagerService managerService, SectionService sectionService) {
+    public ManagerController(ManagerService managerService, SectionService sectionService, RoleService roleService) {
         this.managerService = managerService;
         this.sectionService = sectionService;
+        this.roleService = roleService;
     }
 
     @GetMapping("manager")
@@ -112,6 +116,7 @@ public class ManagerController {
             managerDTO.setLastName(request.getParameter("lastName"));
             managerDTO.setLogin(request.getParameter("login"));
             managerDTO.setPassword(request.getParameter("password"));
+            managerDTO.setRole(roleService.findRole(2L));
             managerDTO.setSections(sectionManagerList.stream().map(SectionMapper::mapperDTO).toList());
             managerService.saveManager(managerDTO);
             return "redirect:manager";

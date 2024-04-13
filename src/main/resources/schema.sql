@@ -9,6 +9,12 @@ CREATE TABLE sections
     shift          INT NOT NULL
 );
 
+CREATE TABLE roles
+(
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    role_name VARCHAR(50) NOT NULL
+);
+
 CREATE TABLE employees
 (
     id            BIGINT AUTO_INCREMENT PRIMARY KEY,
@@ -26,7 +32,9 @@ CREATE TABLE managers
     first_name    VARCHAR(50) NOT NULL,
     last_name     VARCHAR(50) NOT NULL,
     login         VARCHAR(100) NOT NULL UNIQUE,
-    password      VARCHAR(255) NOT NULL
+    password      VARCHAR(255) NOT NULL,
+    role_id BIGINT NOT NULL ,
+    FOREIGN KEY (role_id) REFERENCES roles(id)
 );
 
 CREATE TABLE manager_sections
@@ -37,6 +45,7 @@ CREATE TABLE manager_sections
     FOREIGN KEY (manager_id) REFERENCES managers(id),
     FOREIGN KEY (section_id) REFERENCES sections(id)
 );
+
 
 CREATE TABLE events_in_progress
 (

@@ -1,5 +1,6 @@
 package com.example.rcpproject.manager;
 
+import com.example.rcpproject.role.Role;
 import com.example.rcpproject.section.Section;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.JoinColumn;
@@ -31,6 +32,9 @@ public class ManagerDTO {
     private String password;
     private List<Section> sections = new ArrayList<>();
 
+    @NotNull
+    private Role role;
+
     @Override
     public String toString() {
         return "ManagerDTO{" +
@@ -43,15 +47,24 @@ public class ManagerDTO {
     }
 
 
-    public ManagerDTO(@NotNull String firstName,@NotNull String lastName,@NotNull String login,@NotNull String password, List<Section> sections) {
+    public ManagerDTO(@NotNull String firstName,@NotNull String lastName,@NotNull String login,@NotNull String password, List<Section> sections, @NotNull Role role) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.login = login;
         this.password = password;
         this.sections = sections;
+        this.role=role;
     }
 
     public ManagerDTO() {
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
     }
 
     public Long getId() {

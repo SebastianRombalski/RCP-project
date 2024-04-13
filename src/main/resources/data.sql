@@ -1,3 +1,9 @@
+INSERT INTO
+    roles (role_name)
+VALUES
+    ('Manager'),
+    ('Admin');
+
 
 INSERT INTO
     sections (description, shift)
@@ -34,9 +40,9 @@ VALUES
 
 
 INSERT INTO
-    managers (first_name, last_name, login, password)
+    managers (first_name, last_name, login, password, role_id)
 VALUES
-    ('manager', 'everyone', 'manager.everyone', '{argon2}$argon2id$v=19$m=16384,t=2,p=1$SZzEV6B2Oez84fO1dmVP7Q$gxAVWx98dU+Q+6WLtIElM0BYdIUWPzC9Fd4VJo2rznI');
+    ('manager', 'everyone', 'manager.everyone', '{argon2}$argon2id$v=19$m=16384,t=2,p=1$SZzEV6B2Oez84fO1dmVP7Q$gxAVWx98dU+Q+6WLtIElM0BYdIUWPzC9Fd4VJo2rznI', 2);
 
 INSERT INTO
     manager_sections (manager_id, section_id)

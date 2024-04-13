@@ -1,5 +1,6 @@
 package com.example.rcpproject.manager;
 
+import com.example.rcpproject.role.Role;
 import com.example.rcpproject.section.Section;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
@@ -32,6 +33,9 @@ public class Manager {
     @NotNull
     @Size(min =2,max = 255)
     private String password;
+    @NotNull
+    @OneToOne
+    private Role role;
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name="manager_sections",
@@ -42,10 +46,11 @@ public class Manager {
     public Manager() {
     }
 
-    public Manager(@NotNull String firstName, @NotNull String lastName, @NotNull String login, @NotNull String password, List<Section> sections) {
+    public Manager(@NotNull String firstName, @NotNull String lastName, @NotNull String login, @NotNull String password, @NotNull Role role, List<Section> sections) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.login = login;
+        this.role = role;
         String correctPassword = "{argon2}"+ Argon2PasswordEncoder.defaultsForSpringSecurity_v5_8().encode(password);
         this.password = correctPassword;
         this.sections = sections;
@@ -57,6 +62,14 @@ public class Manager {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
     }
 
     @NotNull
