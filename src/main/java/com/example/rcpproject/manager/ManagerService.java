@@ -24,10 +24,9 @@ public class ManagerService {
         managerRepo.save(mapperDTO(managerDTO));
     }
 
-    public ManagerDTO findManager (String login){
-        Optional<Manager> managerOptional = managerRepo.findManagerByLogin(login);
+    public Optional<ManagerDTO> findManager (String login){
+      return managerRepo.findManagerByLogin(login).map(ManagerMapper::mapperDTO);
 
-       return managerOptional.map(ManagerMapper::mapperDTO).orElse(null);
     }
     
     public List<ManagerDTO> findAllManagers (){

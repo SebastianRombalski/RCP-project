@@ -42,7 +42,7 @@ VALUES
 INSERT INTO
     managers (first_name, last_name, login, password, role_id)
 VALUES
-    ('manager', 'everyone', 'manager.everyone', '{argon2}$argon2id$v=19$m=16384,t=2,p=1$SZzEV6B2Oez84fO1dmVP7Q$gxAVWx98dU+Q+6WLtIElM0BYdIUWPzC9Fd4VJo2rznI', 2);
+    ('manager', 'everyone', 'manager.everyone', '{argon2}$argon2id$v=19$m=16384,t=2,p=1$uMu4j4YAowy6bVKBWg6brw$Bnu4ezKcuionMo5JjG2CvyYISh/A7FQyOW/nu98oUL0', 2);
 
 INSERT INTO
     manager_sections (manager_id, section_id)

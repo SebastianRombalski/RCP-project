@@ -11,6 +11,6 @@ public class RoleService {
     }
 
     public Role findRole(Long id){
-        return roleRepo.findRoleById(id).orElse(null);
+        return roleRepo.findRolesById(id).orElse(null);
     }
 }

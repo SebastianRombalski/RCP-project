@@ -1,15 +1,12 @@
 package com.example.rcpproject.controller;
 
-import com.example.rcpproject.manager.Manager;
 import com.example.rcpproject.manager.ManagerDTO;
 import com.example.rcpproject.manager.ManagerService;
-import com.example.rcpproject.role.RoleRepo;
 import com.example.rcpproject.role.RoleService;
 import com.example.rcpproject.section.SectionDTO;
 import com.example.rcpproject.section.SectionMapper;
 import com.example.rcpproject.section.SectionService;
 import jakarta.servlet.http.HttpServletRequest;
-import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
