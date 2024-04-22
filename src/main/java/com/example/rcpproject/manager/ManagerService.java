@@ -28,6 +28,10 @@ public class ManagerService {
       return managerRepo.findManagerByLogin(login).map(ManagerMapper::mapperDTO);
 
     }
+
+    public Optional<ManagerDTOCredential> findCredentialByLogin (String login){
+       return managerRepo.findManagerByLogin(login).map(MapperDTOCredentials::map);
+    }
     
     public List<ManagerDTO> findAllManagers (){
         List<Manager> managerList = managerRepo.findAll();

@@ -18,14 +18,14 @@ public class ManagerDetailService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         System.out.println("blad jest w username");
-        return managerService.findManager(username).map(this::createUserDetails)
+        return managerService.findCredentialByLogin(username).map(this::createUserDetails)
                 .orElseThrow(() -> new UsernameNotFoundException(String.format("User with email %s not found", username)));
 
     }
 
-    private UserDetails createUserDetails(ManagerDTO managerDTO){
+    private UserDetails createUserDetails(ManagerDTOCredential managerDTOCredential){
         System.out.println("blad jest w createUserDetails");
-        return User.builder().username(managerDTO.getLogin())
-                .password(managerDTO.getPassword()).roles(managerDTO.getRole().getRoleName()).build();
+        return User.builder().username(managerDTOCredential.getLogin())
+                .password(managerDTOCredential.getPassword()).roles(managerDTOCredential.getRole()).build();
     }
 }
