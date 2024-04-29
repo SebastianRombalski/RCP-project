@@ -41,19 +41,19 @@ public class EmployeeService {
         employeeRepo.save(mapperDTO(employeeDTO));
     }
 
-    public void deleteEmployee(Long employeeId){
-        employeeRepo.deleteById(employeeId);
-    }
-
-    public void modifyEmployee(EmployeeDTO employeeDTO, Long employeeId){
-
-        Optional<Employee> employeeOptional = employeeRepo.findById(employeeId);
-        if (employeeOptional.isPresent()){
-
-            employeeRepo.save(mapperDTO(employeeDTO, employeeOptional.get()));
-        }
-        else System.out.println("Taki pracownik nie istnieje");
-    }
+//    public void deleteEmployee(Long employeeId){
+//        employeeRepo.deleteById(employeeId);
+//    }
+//
+//    public void modifyEmployee(EmployeeDTO employeeDTO, Long employeeId){
+//
+//        Optional<Employee> employeeOptional = employeeRepo.findById(employeeId);
+//        if (employeeOptional.isPresent()){
+//
+//            employeeRepo.save(mapperDTO(employeeDTO, employeeOptional.get()));
+//        }
+//        else System.out.println("Taki pracownik nie istnieje");
+//    }
 
     public Optional<EmployeeDTO> employeeByLoginCode(String loginCode){
 

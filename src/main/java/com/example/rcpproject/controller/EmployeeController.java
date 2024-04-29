@@ -2,10 +2,14 @@ package com.example.rcpproject.controller;
 
 import com.example.rcpproject.employee.EmployeeDTO;
 import com.example.rcpproject.employee.EmployeeService;
+import com.example.rcpproject.manager.ManagerService;
 import com.example.rcpproject.section.SectionDTO;
+import com.example.rcpproject.section.SectionMapper;
 import com.example.rcpproject.section.SectionService;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
+import org.springframework.security.core.annotation.CurrentSecurityContext;
+import org.springframework.security.core.context.SecurityContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -21,21 +25,24 @@ import java.util.List;
 public class EmployeeController {
     private final EmployeeService employeeService;
     private final SectionService sectionService;
+    private final ManagerService managerService;
 
-    public EmployeeController(EmployeeService employeeService, SectionService sectionService) {
+    public EmployeeController(EmployeeService employeeService, SectionService sectionService, ManagerService managerService) {
         this.employeeService = employeeService;
         this.sectionService = sectionService;
+        this.managerService = managerService;
     }
 
     @GetMapping("/employee")
-    String employee(Long sectionId, Model model){
-        List<SectionDTO> sectionList = sectionService.findSections();
+    String employee(@CurrentSecurityContext SecurityContext securityContext,Long sectionId, Model model){
+        List<SectionDTO> sectionList = managerService.findManager(securityContext.getAuthentication().getName()).get().getSections().stream().map(SectionMapper::mapperDTO).toList();
         model.addAttribute("sectionList", sectionList);
         if (sectionId!=null && sectionId!=0) {
             model.addAttribute("employee", employeeService.employeesBySection(sectionId));
             return "employee";
         }
         else {
+            //Tutaj Dalej !
             model.addAttribute("employee", employeeService.findEmployees());
             return "employee";
         }
@@ -59,9 +66,9 @@ public class EmployeeController {
     }
 
     @GetMapping("/employee/add")
-    String add( Model model){
+    String add(@CurrentSecurityContext SecurityContext securityContext, Model model){
         model.addAttribute("employee", new EmployeeDTO());
-        model.addAttribute("listSection", sectionService.findSections());
+        model.addAttribute("listSection",managerService.findManager(securityContext.getAuthentication().getName()).get().getSections().stream().map(SectionMapper::mapperDTO).toList());
         return "addEmployee";
     }
 
