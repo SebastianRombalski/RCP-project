@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -43,7 +44,12 @@ public class EmployeeController {
         }
         else {
             //Tutaj Dalej !
-            model.addAttribute("employee", employeeService.findEmployees());
+            List<Long> sectionIdsList = new ArrayList<>();
+            for(SectionDTO section : sectionList) {
+                sectionIdsList.add(section.getId());
+            }
+            List<EmployeeDTO> employeeDTOList = employeeService.findEmployeeBySections(sectionIdsList);
+            model.addAttribute("employee", employeeDTOList);
             return "employee";
         }
     }

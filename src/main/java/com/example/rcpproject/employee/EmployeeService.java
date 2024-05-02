@@ -87,4 +87,13 @@ public class EmployeeService {
         else return false;
     }
 
+    public List<EmployeeDTO> findEmployeeBySections(List<Long> sectionIds){
+        List<EmployeeDTO> employeeDTOList = new ArrayList<>();
+        for(Long sectionId : sectionIds){
+            employeeDTOList.addAll(employeeRepo.findEmployeesBySection_id(sectionId).stream().map(EmployeeMapper::mapperDTO).toList());
+        }
+
+        return employeeDTOList;
+    }
+
 }
